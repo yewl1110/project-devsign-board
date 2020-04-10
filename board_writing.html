@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devsign-Board</title>
+    <link rel = "stylesheet" href = "board_writing.css">
+</head>
+<body>
+    <div id = "header_wrap" role = "heading">
+        <div class = "header_group">
+            <A href = "http://www.naver.com/">
+                <img src = "devsign.jpg" width = "280"></A>
+            <a class = "home" href = "http://www.naver.com/">
+                home
+            </a>
+        </div>
+    </div>
+    <div id = "container" role = "main">
+        <div id = "main_pack">
+            <form action = "index.html" method = "post" accept-charset="utf-8" name = "text">
+                <input type = "text" name = "작성">
+                <input type = "file" name = "file" accept = ".gif, .jpg, .png">
+                <input type = "submit" value = "저장">
+                <a href = "index.html"><input type = "button" value = "취소" onclick = "alert('작성을 취소합니다.')"></a>
+            </form>
+        </div>
+        <div id = "sub_pack">
+            
+        </div>
+    </div>
+</body>
+</html>

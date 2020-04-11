@@ -15,11 +15,10 @@
                 password: <input type="password" id="passwd" name="passwd" required/>
                 confirm: <input type="password" id="confirm" name="confirm" required/><br>
                 <p id="passwd_message"></p>
-                <button type="button" id="submit">Submit</button>
+                <button type="submit" id="btn_submit" disabled>Submit</button>
                 <button type="button" id="cancel">Cancel</button>
             </form>
         </div>
-
-        <script type="text/javascript" src="a.js"></script>
+        <script type="text/javascript" src="js/a.js"></script>
     </body>
 </html>

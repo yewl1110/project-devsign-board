@@ -9,9 +9,9 @@
     <link href="writing.css" rel="stylesheet" type="text/css">
         <div id="header_wrap" role="heading">
             <div class="header_group">
-                <a href="http://hotcat.ddns.net:40080/">
+                <a href="http://hotcat.ddns.net:40080/pi">
                     <img src="resource/devsign.jpg" width="280"></a>
-                <a class="home" href="http://hotcat.ddns.net:40080/">home</a>
+                <a class="home" href="http://hotcat.ddns.net:40080/pi">home</a>
             </div>
         </div>
         <div class="contents">

@@ -17,13 +17,14 @@ if(!empty($_POST['user_id'])){
         $name = "DE";
     }
     $attr_values = array($_POST['user_id'], $_POST['user_name'], $_POST['subject'], $_POST['contents'], $_POST['passwd'], date("Y-m-d H:i:s"));
+    /// 삭제할거
     foreach($attr_values as $v){
         echo $v.'<br>';
     }
-    echo $_POST['contents'];
+    ///
     try{
-        $query = "INSERT INTO `board` (`user_id`, `user_name`, `subject`, `contents`, `tmp_passwd`, `reg_date`) VALUES (?, ?, ?, ?, ?, ?)";
-        
+        $query = "INSERT INTO `board` (`user_id`, `user_name`, `subject`, `contents`, `tmp_passwd`, `reg_date`) 
+        VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         
         try{
@@ -35,4 +36,6 @@ if(!empty($_POST['user_id'])){
         echo $e->getMessage();
     }
 }
+
+
 ?>

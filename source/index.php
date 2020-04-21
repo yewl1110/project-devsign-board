@@ -1,18 +1,40 @@
 <?php
+require 'App.php';
+
+$logPath = $_SERVER['DOCUMENT_ROOT'].'/pi/log/error_log.txt';
+$defaultPath = 'http://hotcat.ddns.net:40080/pi/project-devsign-board/source/'.basename($_SERVER['SCRIPT_FILENAME']);
+
 $dsn = "mysql:host=localhost;port=3306;dbname=devsign_board;charset=utf8";
 
 try{
     $db = new PDO($dsn, "pi", "980809");
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "연결 성공<br>";
 }catch(PDOException $e){
-    assert($e->getMessage());
-    echo $e->getMessage();
+    error_log($e->getMessage(), 3, $logPath);
 }
+
 $stmt = null;
-if(empty($_GET['page'])){ //1페이지
-    $stmt = $db->query("SELECT * FROM board ORDER BY board_id DESC LIMIT 10");
+
+// 전체 게시글 수 가져옴 (페이징할거임)
+try{
+    $stmt = $db->query("SELECT count(*) FROM board");
+    $row = $stmt->fetch();
+    $full_pages = $row['count(*)'];
+    $cur_page = 1;
+
+    if(empty($_GET['page']) || $_GET['page'] == '1'){ //1페이지
+        $stmt = $db->query("SELECT * FROM board ORDER BY board_id DESC LIMIT 10");
+    }else{
+        // 페이지에 맞는 자료들 찾을 수 있는 쿼리 추가해야함
+        $cur_page = $_GET['page'];
+        $offset = ($cur_page - 1) * 10;
+        $query = "SELECT * FROM board ORDER BY board_id DESC LIMIT ".$offset.",10";
+        $stmt = $db->query($query);
+    }
+}
+catch(PDOException $e){
+    error_log($e->getMessage(), 3, $logPath);
 }
 //GET으로 page 번호 받아서 컨텐츠 표시하는 코드 추가해야함
 
@@ -42,12 +64,57 @@ if(empty($_GET['page'])){ //1페이지
                 ?>
             </div>
             <div class="index">
-                <button id=""></button>
-                <button></button>
-                <button></button>
-                <button></button>
+            <?php
+                if($cur_page % 10 == 0){
+                    $start_page = $cur_page - 9;
+                    $end_page = $cur_page;
+                }else{
+                    $start_page = intval($cur_page / 10) * 10 + 1;
+                    $end_page = (intval($cur_page / 10) + 1) * 10;    
+                }
+                if($end_page > $full_pages)
+                    $end_page = $full_pages;
+                    
+                echo '<table id="pages"><tr>';
+                if($start_page > 10){
+                    if($cur_page % 10 == 1){
+                        $des_page = $cur_page - 10;
+                    }else{
+                        $des_page = intval($cur_page / 10) * 10 + 1;
+                        if($cur_page % 10 == 0)
+                            $des_page -= 10;
+                    }
+                    echo '<tr><a href="'.$defaultPath.'?page='.$des_page.'"/>◀◀ </a></tr>';
+                }
+                if($cur_page > 1){
+                    echo '<tr><a href="'.$defaultPath.'?page='.($cur_page-1).'">◀ </a></tr>';
+                }
+                for($i = $start_page; $i <= $end_page; $i++){
+                    if($i == $cur_page){
+                        echo '<tr><b><a href="'.$defaultPath.'?page='.$i.'">'.$i.' </a></b></tr> ';
+                    }else{
+                        echo '<tr><a href="'.$defaultPath.'?page='.$i.'">'.$i.' </a></tr> ';
+                    }
+                }
+                if($cur_page < $full_pages){
+                    echo '<tr><a href="'.$defaultPath.'?page='.($cur_page+1).'">▶ </a></tr>';
+                }
+                if($cur_page != $full_pages && intval($cur_page / 10) <= intval($end_page / 10)){
+                    if(intval($cur_page / 10) == intval($end_page / 10)){
+                        $des_page = $end_page;
+                        if($des_page != $full_pages)
+                            $des_page += 10;
+                    }
+                    else{
+                        $des_page = (intval($cur_page / 10) + 1) * 10 + 1;
+                    }
+                    echo '<tr><a href="'.$defaultPath.'?page='.$des_page.'">▶▶</a></tr>';
+                }
+                echo '</tr></table>';
+            ?>
             </div>
         </div>
-        <script type="text/javascript" src="js/a.js"></script>
+        <script type="text/javascript">
+        </script>
     </body>
 </html>

@@ -5,7 +5,8 @@
 <html>
     <head></head>
     <body>
-    <link href="writing.css" rel="stylesheet" type="text/css">
+    <link href="./writing.css" rel="stylesheet" type="text/css">
+    <div class="main">
         <div id="header_wrap" role="heading">
             <div class="header_group">
                 <a href="http://hotcat.ddns.net:40080/pi">
@@ -42,6 +43,7 @@
                 </div>
             </form>
         </div>
+    </div>
         <script type="text/javascript" src="js/a.js"></script>
     </body>
 </html>

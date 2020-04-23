@@ -1,4 +1,5 @@
 <?php 
+require_once('./errors.php');
 // 분리
 $dsn = "mysql:host=localhost;port=3306;dbname=devsign_board;charset=utf8";
 
@@ -8,8 +9,9 @@ try{
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "연결 성공<br>";
 }catch(PDOException $e){
-    alert($e->getMessage());
+    write_log($e->getMessage());
 }
+
 // 테스트 데이터 삽입
 /*
 try{
@@ -23,11 +25,11 @@ try{
             $stmt->execute($attr_values);
         }
     }catch(PDOException $e){
-        alert($e->getMessage());
+        write_log($e->getMessage());
         exit();
     }
 }catch(PDOException $e){
-    alert($e->getMessage());
+    write_log($e->getMessage());
     exit();
 }
 */
@@ -38,10 +40,10 @@ if(!empty($_POST['user_id'])){
         $name = "DE";
     }
     $attr_values = array($_POST['user_id'], $_POST['user_name'], $_POST['subject'], htmlspecialchars($_POST['contents'], ENT_QUOTES), password_hash($_POST['passwd'], PASSWORD_DEFAULT), date("Y-m-d H:i:s"));
-    /// 삭제할거
-    foreach($attr_values as $v){
+    /// 데이터 삽입 확인
+    /*foreach($attr_values as $v){
         echo $v.'<br>';
-    }
+    }*/
     ///
     try{
         $query = "INSERT INTO `board` (`user_id`, `user_name`, `subject`, `contents`, `tmp_passwd`, `reg_date`) 
@@ -51,13 +53,14 @@ if(!empty($_POST['user_id'])){
         try{
             $stmt->execute($attr_values);
         }catch(PDOException $e){
-            alert($e->getMessage());
+            write_log($e->getMessage());
             exit();
         }
     }catch(PDOException $e){
-        alert($e->getMessage());
+        write_log($e->getMessage());
         exit();
     }
+    header("Location: http://hotcat.ddns.net:40080/pi");
 }
 
 

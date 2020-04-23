@@ -2,7 +2,7 @@
 require_once('errors.php');
 
 function write_list($row){
-    printf('<tr onclick="getNum(%s)"><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%s</td></tr>',$row['board_id'], $row['board_id'], $row['user_id'], $row['user_name'], $row['subject'], $row['hits'], $row['reg_date']);
+    printf('<tr onclick="getNum(%s)"><td><label>%s</label></td><td><label>%s</label></td><td><label>%s</label></td><td><label>%d</label></td><td><label>%s</label></td></tr>',$row['board_id'], $row['board_id'], $row['subject'], $row['user_name'], $row['hits'], $row['reg_date']);
 }
 
 function makeURI(){
@@ -62,7 +62,7 @@ function write_index(){
         $_GET['page'] = $cur_page + 1;
         echo '<tr><a href="'.makeURI().'">▶ </a></tr>';
     }
-    if($cur_page != $full_pages && intval($cur_page / 10) <= intval($end_page / 10)){
+    if($cur_page < $full_pages && intval($cur_page / 10) <= intval($end_page / 10)){
         if(intval($cur_page / 10) == intval($end_page / 10)){
             $des_page = $end_page;
             if($des_page != $full_pages)

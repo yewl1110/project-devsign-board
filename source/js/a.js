@@ -22,7 +22,6 @@ container.addEventListener('keyup', function(){
     }
 });
 
-
 function submitContents(){
     var contents = document.getElementById("contents").innerHTML;
     if(contents == "") return false;

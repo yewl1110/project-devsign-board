@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="contents">
-            <form action="./contents_insert.php" method="POST" onsubmit="return submitContents();">
+            <form action="contents_insert.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
                 <input type="text" id="subject" name="subject" required/><br>
                 <div class="styles">
                     <input type="button" class="BOLD" value="B" onclick="document.execCommand('bold')" />
@@ -28,6 +28,9 @@
                 </div>
                 <textarea id="contents_submit" name="contents"></textarea>
                 <div contenteditable="true" id="contents" required></div></br>
+                <div class="file_upload">
+                    <input type="file" name="files[]" multiple="multiple">
+                </div><br>
                 <div class="account"> <!-- 임시로쓰는거임 -->
                     id: <input type="text" name="user_id" required/>
                     name: <input type="text" name="user_name"/><br>
@@ -38,8 +41,8 @@
                     <p id="passwd_message"></p>
                 </div>
                 <div class="buttons">
-                    <button type="submit" id="btn_submit" disabled>Submit</button>
-                    <button type="button" id="cancel">Cancel</button>
+                    <input type="submit" id="btn_submit" name="submit" value="Submit" disabled>
+                    <input type="button" value="Cancel" onclick="window.history.back();">
                 </div>
             </form>
         </div>

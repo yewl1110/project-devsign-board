@@ -34,34 +34,35 @@ try{
 }
 */
 // db삽입부분
-if(!empty($_POST['user_id'])){
-    $name = $_POST['user_name'];
-    if($name == null){
-        $name = "DE";
-    }
-    $attr_values = array($_POST['user_id'], $_POST['user_name'], $_POST['subject'], htmlspecialchars($_POST['contents'], ENT_QUOTES), password_hash($_POST['passwd'], PASSWORD_DEFAULT), date("Y-m-d H:i:s"));
-    /// 데이터 삽입 확인
-    /*foreach($attr_values as $v){
-        echo $v.'<br>';
-    }*/
-    ///
-    try{
-        $query = "INSERT INTO `board` (`user_id`, `user_name`, `subject`, `contents`, `tmp_passwd`, `reg_date`) 
-        VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $db->prepare($query);
-        
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST["submit"])){
+        $name = $_POST['user_name'];
+        if($name == null){
+            $name = NULL;
+        }
+        $attr_values = array($_POST['user_id'], $_POST['user_name'], $_POST['subject'], htmlspecialchars($_POST['contents'], ENT_QUOTES), password_hash($_POST['passwd'], PASSWORD_DEFAULT), date("Y-m-d H:i:s"));
+    
         try{
-            $stmt->execute($attr_values);
+            $query = "INSERT INTO `board` (`user_id`, `user_name`, `subject`, `contents`, `tmp_passwd`, `reg_date`) 
+            VALUES (?, COALESCE(DEFAULT(user_name), ?), ?, ?, ?, ?)";
+            $stmt = $db->prepare($query);
+            
+            try{
+                $stmt->execute($attr_values);
+                // 마지막으로 INSERT 한 PK 값
+                $id = $db->lastInsertId();
+                write_log($id);
+            }catch(PDOException $e){
+                write_log($e->getMessage());
+                exit();
+            }
         }catch(PDOException $e){
             write_log($e->getMessage());
             exit();
         }
-    }catch(PDOException $e){
-        write_log($e->getMessage());
-        exit();
+
     }
-    header("Location: http://hotcat.ddns.net:40080/pi");
+    
 }
-
-
+header("Location: http://hotcat.ddns.net:40080/pi");
 ?>

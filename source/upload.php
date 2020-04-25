@@ -4,11 +4,17 @@ require_once('errors.php');
 
 // Check if image file is a actual image or fake image
 //동적 배열로 바꾸기????
-//if(isset($_POST["submit"])) {
+//if(isset($_POST["submit"])) 
+if(is_uploaded_file($_FILES["files"]["tmp_name"][0])){
+    echo "업로드 됨";
+}else{
+    echo "안됨";
+}
 if(isset($_POST["submit"]) && count($_FILES["files"]["name"]) <= 10){
     $allowDataType = array(
         'jpg', 'png', 'jpeg', 'txt'
     );
+    echo count($_FILES["files"]["name"]);
     $target_dir = "../../files/";
     $uploadOk = array_fill(0, 9, true);
 

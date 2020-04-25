@@ -1,6 +1,5 @@
 <?php
 require_once('contents_list.php');
-
 $dsn = "mysql:host=localhost;port=3306;dbname=devsign_board;charset=utf8";
 
 try{
@@ -15,7 +14,8 @@ $stmt = null;
 $amt_contents = 20;
 
 try{
-    $stmt = $db->query("SELECT count(*) FROM board");
+    $paging_query = "SELECT count(*) FROM board ";
+    $stmt = $db->query($paging_query);
     $row = $stmt->fetch();
     $_GET['full_pages'] = ceil($row['count(*)'] / $amt_contents);
     $_GET['cur_page'] = 1;
@@ -45,6 +45,13 @@ try{
             $condition = "WHERE subject LIKE ? OR contents LIKE ? ";
             array_push($params, "%".$_GET['keyword']."%");
         }
+
+        $paging_query = "SELECT count(*) FROM board ".$condition;
+        $stmt = $db->prepare($paging_query);
+        $stmt->execute($params);
+        $row = $stmt->fetch();
+        $_GET['full_pages'] = ceil($row['count(*)'] / $amt_contents);
+
         $query = $query.$condition.$paging;
         $stmt = $db->prepare($query);
         $stmt->execute($params);

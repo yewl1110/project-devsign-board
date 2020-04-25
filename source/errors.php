@@ -6,4 +6,10 @@ function write_log($messages){
     $result = '['.$cur_time.']'.$messages."\n";
     error_log($result, 3, $logPath);
 }
+
+function alert($messages){
+    echo '<script type="text/javascript">
+        alert("'.$messages.'");
+    </script>';
+}
 ?>

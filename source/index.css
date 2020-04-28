@@ -10,10 +10,15 @@
     padding-top: 25px;
 }
 
-.home{
-    font-size: 20px;
-    text-align: right;
-    color: gray;
+#header_menu{
+    font-size: 15px;
+    float: right;
+}
+
+#header_menu a{
+    color: black;
+    text-decoration-style: none;
+    text-decoration-line: none;
 }
 
 .contents{ 
@@ -26,15 +31,12 @@
     margin-top: 100px;
 }
 
-.contents .write{
-    text-align: right;
-}
-
 .contents .write a{
     color: black;
     text-decoration-style: none;
     text-decoration-line: none;
     margin-right: 20px;
+    float: right;
 }
 
 .search input{

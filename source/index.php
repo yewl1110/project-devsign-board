@@ -1,9 +1,13 @@
 <?php
 require_once('contents_list.php');
 require_once('db.class.php');
+require_once('declared.php');
 
 DB::connect();
 $amt_contents = 20; //한 페이지에 표시할 게시글 수
+if(isset($_COOKIE["amt_contents"])){
+    $amt_contents = $_COOKIE["amt_contents"];
+}
 
 try{
     $paging_query = "SELECT count(*) FROM board ";
@@ -18,6 +22,9 @@ try{
         $paging = "ORDER BY board_id DESC LIMIT {$amt_contents}";
     }else{
         $_GET['cur_page'] = $_GET['page'];
+        if($_GET['cur_page'] > $_GET['full_pages']){
+            $_GET['cur_page'] = $_GET['full_pages'];
+        }
         $offset = ($_GET['cur_page'] - 1) * $amt_contents;
         $paging = "ORDER BY board_id DESC LIMIT {$offset}, {$amt_contents}";
     }
@@ -60,15 +67,17 @@ catch(PDOException $e){
 <body>
 <link href="index.css" rel="stylesheet" type="text/css">
     <div class="main">
-        <div id="header_wrap" role="heading">
-            <div class="header_group">
-                <a href="http://hotcat.ddns.net:40080/">
-                    <img src="resource/devsign.jpg" width="280"></a>
-                <a class="home" href="http://hotcat.ddns.net:40080/">home</a>
-            </div>
-        </div>
-        <div class="contents"> 
-            <div class="write"><a href="./writing.php">글쓰기</a></div>
+        <?php write_header();?>
+        <div class="contents">
+            <span class="amt_contents">
+                <select id="amt_contents">
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                </select>
+                <label> 개의 글 표시</label>
+            </span>
+            <span class="write"><a href="./writing.php">글쓰기</a></span>
             <div class="search">
                 <form action="." method="GET">
                     <select name="search_mode">
@@ -107,10 +116,6 @@ catch(PDOException $e){
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function getNum(value){
-            alert(value);
-        }
-    </script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html> 

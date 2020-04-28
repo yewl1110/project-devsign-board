@@ -1,12 +1,13 @@
 <?php
 require_once('errors.php');
+require_once('declared.php');
 
 function write_list($row){
     printf('<tr onclick="getNum(%s)"><td><label>%s</label></td><td><label>%s</label></td><td><label>%s</label></td><td><label>%d</label></td><td><label>%s</label></td></tr>',$row['board_id'], $row['board_id'], $row['subject'], $row['user_name'], $row['hits'], $row['reg_date']);
 }
 
 function makeURI(){
-    $defaultPath = 'http://hotcat.ddns.net:40080/pi/project-devsign-board/source/'.'index.php';
+    $defaultPath = getRootURL().'/index.php';
     $value = array();
     if(!empty($_GET['keyword'])){
         $value['keyword'] = $_GET['keyword'];

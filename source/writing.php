@@ -1,19 +1,20 @@
 <?php 
-?>
+require_once('declared.php');
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION["id"])){
+    header("Location:".$_SERVER["HTTP_REFERER"]);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head></head>
 <body>
 <link href="./writing.css" rel="stylesheet" type="text/css">
 <div class="main">
-    <div id="header_wrap" role="heading">
-        <div class="header_group">
-            <a href="http://hotcat.ddns.net:40080/pi">
-                <img src="resource/devsign.jpg" width="280"></a>
-            <a class="home" href="http://hotcat.ddns.net:40080/pi">home</a>
-        </div>
-    </div>
+    <?php write_header();?>
     <div class="contents">
         <form action="contents_insert.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
             <input type="text" id="subject" name="subject" required/><br>
@@ -29,9 +30,9 @@
             <textarea id="contents_submit" name="contents"></textarea>
             <div contenteditable="true" id="contents" required></div></br>
             <div class="file_upload">
-                <input type="file" name="files[]" multiple="multiple">
+                <input type="file" id="files" name="files[]" multiple="multiple">
             </div><br>
-            <div class="account"> <!-- 임시로쓰는거임 -->
+            <!--<div class="account">
                 id: <input type="text" name="user_id" required/>
                 name: <input type="text" name="user_name"/><br>
                 <div class="passwd">
@@ -39,7 +40,7 @@
                 confirm: <input type="password" id="confirm" name="confirm" required/><br>
                 </div>
                 <p id="passwd_message"></p>
-            </div>
+            </div>-->
             <div class="buttons">
                 <input type="submit" id="btn_submit" name="submit" value="Submit" disabled>
                 <input type="button" value="Cancel" onclick="window.history.back();">

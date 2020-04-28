@@ -31,14 +31,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         write_log("post_submit");
         $id = null;
 
-        $query = "INSERT INTO board (user_id, user_name, subject, contents, tmp_passwd, reg_date) 
-        VALUES (:user_id, COALESCE(DEFAULT(user_name), :user_name), :subject, :contents, :tmp_passwd, :reg_date)";
+        $query = "INSERT INTO board (user_id, user_name, subject, contents, reg_date) 
+        VALUES (:user_id, COALESCE(DEFAULT(user_name), :user_name), :subject, :contents, :reg_date)";
         $params = array(
             ":user_id" => $_POST["user_id"],
             ":user_name" => $_POST["user_name"],
             ":subject" => $_POST["subject"],
             ":contents" => htmlspecialchars($_POST['contents'], ENT_QUOTES),
-            ":tmp_passwd" => password_hash($_POST['passwd'], PASSWORD_DEFAULT),
+            /*":tmp_passwd" => password_hash($_POST['passwd'], PASSWORD_DEFAULT),*/
             ":reg_date" => date("Y-m-d H:i:s")
         );
         DB::query2($query, $params);

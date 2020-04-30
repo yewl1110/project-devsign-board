@@ -53,14 +53,24 @@
     margin: 10px 0px 20px 0px;
 }
 
+#listtb{
+    table-layout: fixed;
+}
+
 #listtb th, td{
     border-bottom: 1px solid #ddd;
     padding: 5px 5px 5px 5px;
     text-align: left;
 }
-
 #listtb th{
     text-align: center;
+}
+
+#listtb td{
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #listtb tr:hover{

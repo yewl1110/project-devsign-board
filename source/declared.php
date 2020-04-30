@@ -5,7 +5,10 @@ function getRootURL(){
 }
 
 function write_header_manu(){
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $home = getRootURL();
     if(isset($_SESSION["id"])){
         echo '<a href="'.$home.'/logout.php">로그아웃</a>';

@@ -11,18 +11,27 @@ require_once('declared.php');
     <div class="main">
         <?php write_header();?>
         <div class="contents">
-            <div class="login-box">
+            <h1>로그인</h1>
+            <div class="form-box">
                 <form action="signin.php" method="POST">
-                    <label>ID</label>
-                    <input type="text" name="id" required><br>
-                    <label>Password</label>
-                    <input type="password" name="passwd" required><br>
-                    <input type="submit" name="submit">
+                    <div class="login-box">
+                        <input type="text" name="id" placeholder="ID" required><br>
+                        <input type="password" name="passwd" placeholder="Password" required><br>
+                        <input id="submit" type="submit" name="submit" value="로그인">
+                    </div>
+                    <span class="auto-login">
+                        <label><input id="check_auto_login" type="checkbox" name="auto_login">자동로그인</label>
+                    </span>
                 </form>
-            </div>
-            <div class="login-add-func">
-                <a href="">회원가입</a>
-                <a href="">아이디/비밀번호 찾기</a>
+                
+                <div class="login-add-func">
+                    <?php
+                    echo '
+                    <a href="'.getRootURL().'/register_member.php">회원가입</a>
+                    <a href="">아이디/비밀번호 찾기</a>
+                    ';
+                    ?>
+                </div>
             </div>
         </div>
 

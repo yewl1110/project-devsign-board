@@ -1,5 +1,17 @@
 <?php
 require_once('declared.php');
+require_once("errors.php");
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(isset($_GET["message"])){
+    ErrorManager::requestAlert($_GET["message"]);
+}
+
+if(isset($_SESSION["id"])){
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>

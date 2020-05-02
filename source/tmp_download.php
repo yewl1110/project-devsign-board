@@ -7,7 +7,7 @@ try{
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(PDOException $e){
-    write_log($e->getMessage());
+    ErrorManager::write_log($e->getMessage());
 }
 
 $stmt = null;
@@ -16,7 +16,7 @@ try{
     $query = "SELECT * FROM table_attach";
     $stmt = $db->query($query);
 }catch(PDOException $e){
-    write_log($e->getMessage());
+    ErrorManager::write_log($e->getMessage());
 }
 
 function writeTable($row){

@@ -18,7 +18,7 @@ class DB{
                 self::$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }catch(PDOException $e){
-                write_log($e->getMessage());
+                ErrorManager::write_log($e->getMessage());
             }
         }
     }
@@ -28,7 +28,7 @@ class DB{
             self::$stmt = self::$conn->query($query);
             $result = self::$stmt->fetchAll();
         }catch(PDOEXCEPTION $e){
-            write_log($e->getMessage());
+            ErrorManager::write_log($e->getMessage());
             $result = null;
         }
         return $result;
@@ -43,7 +43,7 @@ class DB{
             self::$stmt->execute();
             $result = self::$stmt->fetchAll();
         }catch(PDOEXCEPTION $e){
-            write_log($e->getMessage());
+            ErrorManager::write_log($e->getMessage());
             $result = null;
         }
         return $result;

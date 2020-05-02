@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION["id"])){
-    header("Location:".$_SERVER["HTTP_REFERER"]);
+    header("Location:".getRootURL()."/index.php?message=NO_AUTH");
 }
 ?>
 <!DOCTYPE html>
@@ -32,15 +32,6 @@ if(!isset($_SESSION["id"])){
             <div class="file_upload">
                 <input type="file" id="files" name="files[]" multiple="multiple">
             </div><br>
-            <!--<div class="account">
-                id: <input type="text" name="user_id" required/>
-                name: <input type="text" name="user_name"/><br>
-                <div class="passwd">
-                password: <input type="password" id="passwd" name="passwd" required/>
-                confirm: <input type="password" id="confirm" name="confirm" required/><br>
-                </div>
-                <p id="passwd_message"></p>
-            </div>-->
             <div class="buttons">
                 <input type="submit" id="btn_submit" name="submit" value="Submit" disabled>
                 <input type="button" value="Cancel" onclick="window.history.back();">

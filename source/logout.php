@@ -5,9 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_SESSION["id"])){
-    session_unset();
-    session_destroy();
-}
+session_destroy();
+$_SESSION = [];
+setcookie(session_name(), '', 1);
+
 header("Location:".getRootURL()."/index.php");
 ?>

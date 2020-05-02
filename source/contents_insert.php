@@ -1,5 +1,5 @@
 <?php 
-require_once('./errors.php');
+require_once('ErrorManagers.php');
 require_once('db.class.php');
 
 DB::connect();
@@ -26,24 +26,21 @@ try{
 }
 */
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    write_log("post");
-    if(isset($_POST["submit"])){
-        write_log("post_submit");
+    if(isset($_POST["submit"]) && isset($_SESSION["id"])){
         $id = null;
-
+        
         $query = "INSERT INTO board (user_id, user_name, subject, contents, reg_date) 
         VALUES (:user_id, COALESCE(DEFAULT(user_name), :user_name), :subject, :contents, :reg_date)";
         $params = array(
-            ":user_id" => $_POST["user_id"],
-            ":user_name" => $_POST["user_name"],
+            ":user_id" => $_SESSION["id"],
+            ":user_name" => $_SESSION["nickname"],
             ":subject" => $_POST["subject"],
             ":contents" => htmlspecialchars($_POST['contents'], ENT_QUOTES),
-            /*":tmp_passwd" => password_hash($_POST['passwd'], PASSWORD_DEFAULT),*/
             ":reg_date" => date("Y-m-d H:i:s")
         );
         DB::query2($query, $params);
         $id = DB::lastInsertId();
-
+        
         // 파일 첨부했는지 확인
         if(is_uploaded_file($_FILES["files"]["tmp_name"][0])){
             $allowDataType = array(
@@ -51,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             );
             $target_dir = "../../files/";
             $uploadOk = array_fill(0, 9, true);
-        
+            
             for($i = 0; $i < count($_FILES["files"]["name"]); $i++){
                 //파일 크기 검사
                 if($_FILES["files"]["name"][$i] > 500000){
@@ -74,14 +71,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $uploadOk[$i] = false;
                 }
             }
-        
+            
             $query = "INSERT INTO table_attach (file_id, board_id, file_name_origin, file_name_save) 
             VALUES (:file_id, :board_id, :file_name_origin, :file_name_save)";
-
+            
             //파일 업로드 및 db에 매핑
             for($i = 0, $cnt = 0; $i < count($_FILES["files"]["name"]); $i++){
                 if($cnt > 10){
-                    alert("파일은 10개까지만 업로드 할 수 있습니다.");
+                    ErrorManager::alert("파일은 10개까지만 업로드 할 수 있습니다.");
                     break;
                 }
                 if($uploadOk[$i] == true){
@@ -89,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $file_name_save = md5(microtime()).".".$fileType;
                     $fileType = strtolower(pathinfo($file_name_origin,PATHINFO_EXTENSION));
                     $target_file = $target_dir.$file_name_save;
-
+                    
                     $params = array(
                         ":file_id" => md5(uniqid(rand(), true)),
                         ":board_id" => $id,
@@ -97,12 +94,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         ":file_name_save" => md5(microtime()).".".$fileType
                     );
                     
-                    if (move_uploaded_file($_FILES["files"]["tmp_name"][$i], $target_file)) {                            write_log("The file ". basename($file_name_origin). " has been uploaded.");
+                    if (move_uploaded_file($_FILES["files"]["tmp_name"][$i], $target_file)) {                            
+                        ErrorManager::write_log("The file ". basename($file_name_origin). " has been uploaded.");
                         DB::query2($query, $params);
                         $cnt++;
                     } else {
-                        alert("파일 업로드 실패 {$file_name_origin}");
-                        write_log("Sorry, there was an error uploading your file.");
+                        ErrorManager::alert("파일 업로드 실패 {$file_name_origin}");
+                        ErrorManager::write_log("Sorry, there was an ErrorManager uploading your file.");
                     }
                 }
             }

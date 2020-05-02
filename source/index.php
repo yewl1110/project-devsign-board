@@ -2,6 +2,11 @@
 require_once('contents_list.php');
 require_once('db.class.php');
 require_once('declared.php');
+require_once("errors.php");
+
+if(isset($_GET["message"])){
+    ErrorManager::requestAlert($_GET["message"]);
+}
 
 DB::connect();
 $amt_contents = 20; //한 페이지에 표시할 게시글 수

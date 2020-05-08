@@ -7,15 +7,15 @@ if (session_status() != PHP_SESSION_NONE) {
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($_POST["submit"]){
+    if($_POST["id"]){
         DB::connect();
         DB::query2("INSERT INTO member VALUES (:id, :passwd, :email, :name, :nickname)",
         array(
-            ":id" => $_POST["id"],
-            ":passwd" => password_hash($_POST["passwd"], PASSWORD_DEFAULT),
-            ":email" => $_POST["email"],
-            ":name" => $_POST["name"],
-            ":nickname" => $_POST["nickname"]
+        ":id" => $_POST["id"],
+        ":passwd" => password_hash($_POST["passwd"], PASSWORD_DEFAULT),
+        ":email" => $_POST["email"],
+        ":name" => $_POST["name"],
+        ":nickname" => $_POST["nickname"]
         ));
         header("Location: ".getRootURL());
     }
@@ -25,76 +25,93 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/register_member.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
+    <link href="style/register_member.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<link href="register_member.css" rel="stylesheet" type="text/css">
-    <div class="main">
+    <header>
         <?php write_header();?>
-        <div class="contents">
-            <h1>회원가입</h1>
-            <div class="form-box">
-                <form action="" method="POST">
-                    <table>
-                        <tr>
-                            <th style="width: 50px;"></th>
-                            <th style="width: 300px;"></th>
-                            <th style="width: 100px;"></th>
-                        </tr>
-                        <tr>
-                            <td><label style="color: red;">* </label></td>
-                            <td><input id="value_id" type="text" name="id" placeholder="ID" required></td>
-                            <td><button id="check_id">Check</button></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><label id="message_id"> </label></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><label style="color: red;">* </label></td>
-                            <td><input id="passwd" type="password" name="passwd" placeholder="Password" required></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><label style="color: red;">* </label></td>
-                            <td><input id="confirm" type="password" name="confirm" placeholder="Re-enter password" required></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><label id="message_passwd"> </label></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><label style="color: red;">* </label></td>
-                            <td><input id="value_email" type="email" name="email" placeholder="E-Mail" required></td>
-                            <td><button id="check_email">Check</button></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><label id="message_email"> </label></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="text" name="name" placeholder="Name"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="text" name="nickname" placeholder="Nickname"></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <div class="buttons">
-                        <input type="submit" name="submit" value="Register">
-                        <button id="Cancel">Cancel</button>
-                    </div>
-                </form>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row justify-content-center" id="container-head">
+                <div class="col-6">
+                    <h1>회원가입</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <form class="container was-validated" action="" method="POST">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-1">
+                                    <label style="color: red;">*</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control is-invaild" id="value_id" name="id" placeholder="ID" required>
+                                    <div class="invalid-feedback" id="message_id">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-outline-dark" id="check_id">Check</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-1">
+                                    <label style="color: red;">*</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="password" class="form-control is-vaild" id="passwd" name="passwd" placeholder="Password" required>
+                                    <div class="invalid-feedback" id="message_passwd">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-1">
+                                    <label style="color: red;">*</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="password" class="form-control is-vaild" id="confirm" name="confirm" placeholder="Re-enter password" required>
+                                    <div class="invalid-feedback" id="message_confirm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row"> 
+                                <div class="col-1">
+                                    <label style="color: red;">*</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="email" class="form-control is-vaild" id="value_email" name="email" placeholder="E-Mail" required>
+                                    <div class="invalid-feedback" id="message_email">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-outline-dark" id="check_email">Check</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-around">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-secondary">Register</button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-secondary" id="cancel">Cancel</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+    <footer></footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="js/register_member.js" type="text/javascript"></script>
 </body>
 </html>

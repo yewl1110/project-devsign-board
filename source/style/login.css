@@ -1,0 +1,20 @@
+a{
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration-style: none;
+    text-decoration-line: none;
+}
+
+#login{
+    min-width: 300px;
+    margin-top: 30px;
+}
+
+#login .form-group{
+    margin: 20px 0 20px 0;
+}
+
+@media screen and (max-width: 600px){
+    .container-header{
+        text-align: center;
+    }
+}

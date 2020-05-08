@@ -11,16 +11,17 @@ if(isset($_SESSION["id"])){
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST["submit"])){
+    if(isset($_POST["id"])){
         DB::connect();
-        $rows = DB::query2("SELECT id, password FROM member WHERE id = :id", 
+        $rows = DB::query2("SELECT * FROM member WHERE id = :id", 
         array(":id" => $_POST["id"]));
-        
         
         if(!$rows['0'] || !password_verify($_POST["passwd"], $rows['0']["password"])){
             header("Location:".getRootURL()."/login.php?message=ACCOUNT_WRONG");
         }else{
             $_SESSION["id"] = $rows['0']["id"];
+            $_SESSION["email"] = $rows['0']["email"];
+            $_SESSION["name"] = $rows['0']["name"];
             $_SESSION["nickname"] = $rows['0']["nickname"];
             print_r($_COOKIE);
             //로그인 성공

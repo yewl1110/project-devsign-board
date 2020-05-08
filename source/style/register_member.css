@@ -1,0 +1,12 @@
+body{
+    background-color:#FAFAFA;
+}
+.container {
+    padding: 100px 0 100px 0;
+}
+form{
+    min-width: 300px;
+}
+button{
+    width:100%;
+}

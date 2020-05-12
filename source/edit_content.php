@@ -20,6 +20,9 @@ if(!isset($_SESSION["id"])){
         .container {
             padding: 100px 0 100px 0;
         }
+        #board_id{
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +33,7 @@ if(!isset($_SESSION["id"])){
         <div class="container">
             <div class="row justify-content-around">
                 <div class="col-8">
-                    <form action="insert_contents.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
+                    <form action="update_contents.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="col-12">
                                 <input class="form-control" type="text" id="subject" name="subject" required/>
@@ -53,6 +56,7 @@ if(!isset($_SESSION["id"])){
                         </div>
                         <div class="form-row">
                             <div class="col-12">
+                                <input id="board_id" name="board_id">
                                 <textarea id="contents_submit" name="contents"></textarea>
                                 <div class="form-control" contenteditable="true" id="contents" required></div>
                             </div>
@@ -66,7 +70,7 @@ if(!isset($_SESSION["id"])){
                         </div>
                         <div class="row justify-content-around" id="buttons">
                             <div class="col-3">
-                                <input class="btn btn-dark" type="submit" id="btn_submit" name="submit" value="Submit">
+                                <input class="btn btn-dark" type="submit" id="btn_submit" name="submit" value="Edit">
                             </div>
                             <div class="col-3">
                                 <input class="btn btn-dark" type="button" value="Cancel" onclick="window.history.back();">
@@ -81,5 +85,6 @@ if(!isset($_SESSION["id"])){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/a.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
 </body>
 </html>

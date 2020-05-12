@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var home = "http://hotcat.ddns.net:40080/pi/project-devsign-board/source";
     var id_check = false;
     var password_check = false;
     var email_check = false;
@@ -19,7 +20,7 @@ $(document).ready(function(){
             $("#message_id").html("ID 형식이 올바르지 않습니다.<br>(5~15자, 알파벳, 숫자, _만 사용 가능)");
         }else{
             $.ajax({
-                url:"http://hotcat.ddns.net:40080/pi/project-devsign-board/source/check.php?id="+value,
+                url:"check.php?id="+value,
                 type:"get",
                 success:function(result){
                     if(result == "0"){
@@ -107,6 +108,10 @@ $(document).ready(function(){
         }else{
             return false;
         }
+    });
+
+    $("#cancel").click(function(){
+        window.location.href = home;
     });
 
     function check(str, val){

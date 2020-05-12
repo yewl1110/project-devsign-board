@@ -1,0 +1,30 @@
+.post{
+    background-color: white;
+    padding: 20px 10px 20px 10px;
+}
+.post-meta{
+    margin-bottom: 1.25rem;
+    color: #999;
+}
+.post-meta span{
+    margin: 0 5px 0 5px;
+}
+
+.post-contents{
+    min-height: 200px;
+}
+
+.files{
+    display: none;
+    padding: 10px 10px 10px 10px;
+    overflow-x: hidden;
+}
+.files *{
+    display: none;
+}
+.files span:hover{
+    background-color:grey;
+}
+.files a:hover{
+    color: white;
+}

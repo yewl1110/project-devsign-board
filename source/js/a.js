@@ -14,5 +14,7 @@ $(document).ready(function(){
 function submitContents(){
     var contents = $('#contents').html();
     if(contents == "") return false;
-    $('$contents_submit').text(contents);
+    var params = new URLSearchParams(window.location.search);
+    $('#board_id').val(params.get("board_id"));
+    $('#contents_submit').text(contents);
 };

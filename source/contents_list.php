@@ -82,60 +82,55 @@ function write_table(){
         $amt_contents = $_COOKIE["amt_contents"];
     }
     
-    try{
-        $paging_query = "SELECT count(*) FROM board ";
-        $rows = $GLOBALS["rows"] = DB::query1($paging_query);
-        // 전체 게시글 수 가져옴 (페이징할거임)
-        $GLOBALS['full_pages'] = ceil($rows['0']['count(*)'] / $amt_contents);
-        $GLOBALS['cur_page'] = 1;
-        
-        $query = "SELECT * FROM board ";
-        //페이징
-        if(empty($_GET['page']) || $_GET['page'] == '1'){ //1페이지
-            $paging = "ORDER BY board_id DESC LIMIT {$amt_contents}";
-        }else{
-            $GLOBALS['cur_page'] = $_GET['page'];
-            if($GLOBALS['cur_page'] > $GLOBALS['full_pages']){
-                $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
-            }
-
-            /*$GLOBALS['cur_page'] = $_GET['page'];
-            if($GLOBALS['cur_page'] > $GLOBALS['full_pages']){
-                $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
-            }*/
-            $offset = ($GLOBALS['cur_page'] - 1) * $amt_contents;
-            $paging = "ORDER BY board_id DESC LIMIT {$offset}, {$amt_contents}";
+    $paging_query = "SELECT count(*) FROM board ";
+    $rows = $GLOBALS["rows"] = DB::query1($paging_query);
+    // 전체 게시글 수 가져옴 (페이징할거임)
+    $GLOBALS['full_pages'] = ceil($rows['0']['count(*)'] / $amt_contents);
+    $GLOBALS['cur_page'] = 1;
+    
+    $query = "SELECT * FROM board ";
+    //페이징
+    if(empty($_GET['page']) || $_GET['page'] == '1'){ //1페이지
+        $paging = "ORDER BY board_id DESC LIMIT {$amt_contents}";
+    }else{
+        $GLOBALS['cur_page'] = $_GET['page'];
+        if($GLOBALS['cur_page'] > $GLOBALS['full_pages']){
+            $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
         }
         
-        //검색 구현
-        if(!empty($_GET['keyword'])){
-            $params = array();
-            
-            if($_GET['search_mode'] == "1"){
-                $condition = "WHERE subject LIKE :subject OR contents LIKE :contents ";
-                $params[":subject"] = "%{$_GET['keyword']}%";
-                $params[":contents"] = "%{$_GET['keyword']}%";
-                
-            } else if($_GET['search_mode'] == "2"){
-                $condition = "WHERE subject LIKE :subject ";
-                $params[":subject"] = "%{$_GET['keyword']}%";
-            }else{
-                $condition = "WHERE contents LIKE :contents ";
-                $params[":contents"] = "%{$_GET['keyword']}%";
-            }
-            
-            $row = DB::query2($query.$condition, $params);
-            $GLOBALS['full_pages'] = ceil($row['0']['count(*)'] / $amt_contents);
-            
-            $GLOBALS["rows"] = DB::query2($query.$condition.$paging, $params);
-        }
-        else{
-            $query = $query.$paging;
-            $GLOBALS["rows"] = DB::query1($query);
-        }
+        /*$GLOBALS['cur_page'] = $_GET['page'];
+        if($GLOBALS['cur_page'] > $GLOBALS['full_pages']){
+            $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
+        }*/
+        $offset = ($GLOBALS['cur_page'] - 1) * $amt_contents;
+        $paging = "ORDER BY board_id DESC LIMIT {$offset}, {$amt_contents}";
     }
-    catch(PDOException $e){
-        write_log($e->getMessage());
+    
+    //검색 구현
+    if(!empty($_GET['keyword'])){
+        $params = array();
+        
+        if($_GET['search_mode'] == "1"){
+            $condition = "WHERE subject LIKE :subject OR contents LIKE :contents ";
+            $params[":subject"] = "%{$_GET['keyword']}%";
+            $params[":contents"] = "%{$_GET['keyword']}%";
+            
+        } else if($_GET['search_mode'] == "2"){
+            $condition = "WHERE subject LIKE :subject ";
+            $params[":subject"] = "%{$_GET['keyword']}%";
+        }else{
+            $condition = "WHERE contents LIKE :contents ";
+            $params[":contents"] = "%{$_GET['keyword']}%";
+        }
+        
+        $rows = DB::query2($paging_query.$condition, $params);
+        $GLOBALS['full_pages'] = ceil($rows['0']['count(*)'] / $amt_contents);
+        
+        $GLOBALS["rows"] = DB::query2($query.$condition.$paging, $params);
+    }
+    else{
+        $query = $query.$paging;
+        $GLOBALS["rows"] = DB::query1($query);
     }
 }
 

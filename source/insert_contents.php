@@ -1,6 +1,9 @@
 <?php 
-require_once('ErrorManagers.php');
+require_once('errors.php');
 require_once('db.class.php');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 DB::connect();
 
@@ -26,11 +29,11 @@ try{
 }
 */
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST["submit"]) && isset($_SESSION["id"])){
+    if(isset($_POST["subject"]) && isset($_SESSION["id"])){
         $id = null;
         
-        $query = "INSERT INTO board (user_id, user_name, subject, contents, reg_date) 
-        VALUES (:user_id, COALESCE(DEFAULT(user_name), :user_name), :subject, :contents, :reg_date)";
+        $query = "INSERT INTO board (user_id, user_name, subject, contents, reg_date, hits) 
+        VALUES (:user_id, COALESCE(DEFAULT(user_name), :user_name), :subject, :contents, :reg_date, DEFAULT(hits))";
         $params = array(
             ":user_id" => $_SESSION["id"],
             ":user_name" => $_SESSION["nickname"],

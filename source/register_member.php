@@ -40,17 +40,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-6">
-                    <form class="container was-validated" action="" method="POST">
+                <div class="col-6" id="formbox">
+                    <form class="" action="" method="POST">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-1">
                                     <label style="color: red;">*</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control is-invaild" id="value_id" name="id" placeholder="ID" required>
-                                    <div class="invalid-feedback" id="message_id">
-                                    </div>
+                                    <input type="text" class="form-control invalid" id="value_id" name="id" placeholder="ID" required>
+                                    <div class="invalid-feedback" id="message_id"></div>
                                 </div>
                                 <div class="col-2">
                                     <button class="btn btn-outline-dark" id="check_id">Check</button>
@@ -63,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <label style="color: red;">*</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="password" class="form-control is-vaild" id="passwd" name="passwd" placeholder="Password" required>
+                                    <input type="password" class="form-control invalid" id="passwd" name="passwd" placeholder="Password" required>
                                     <div class="invalid-feedback" id="message_passwd">
                                     </div>
                                 </div>
@@ -75,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <label style="color: red;">*</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="password" class="form-control is-vaild" id="confirm" name="confirm" placeholder="Re-enter password" required>
+                                    <input type="password" class="form-control invalid" id="confirm" name="confirm" placeholder="Re-enter password" required>
                                     <div class="invalid-feedback" id="message_confirm">
                                     </div>
                                 </div>
@@ -87,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <label style="color: red;">*</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="email" class="form-control is-vaild" id="value_email" name="email" placeholder="E-Mail" required>
+                                    <input type="email" class="form-control invalid" id="value_email" name="email" placeholder="E-Mail" required>
                                     <div class="invalid-feedback" id="message_email">
                                     </div>
                                 </div>

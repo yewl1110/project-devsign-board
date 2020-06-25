@@ -1,7 +1,7 @@
 <?php
 
 function getRootURL(){
-    return 'http://hotcat.ddns.net:40080/pi/project-devsign-board/source';
+    return 'http://hotcat2.ddns.net:40080/pi/project-devsign-board/source';
 }
 
 function write_header_manu(){

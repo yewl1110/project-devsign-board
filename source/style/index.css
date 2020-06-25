@@ -10,17 +10,13 @@
     color: black;
     text-decoration-style: none;
     text-decoration-line: none;
-    margin-right: 20px;
-    float: right;
 }
 
-#search input{
-    width: 70%;
-}
-
-.contents-body .list {
+.list {
     background-color: #FCFCFC;
     margin: 10px 0px 20px 0px;
+    justify-content: center;
+    align-items: center;
 }
 
 #listtb{

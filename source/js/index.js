@@ -10,14 +10,27 @@ $(document).ready(function(){
         }
     }
 
-    document.getElementById("amt_contents").addEventListener('change', function(){
+    /*document.getElementById("amt_contents").addEventListener('change', function(){
         var value = document.getElementById("amt_contents").value;
         var date = new Date();
         date.setTime(date.getTime() + 24*60*60*1000);
         document.cookie = "amt_contents=" + value + ";expires=" + date.toUTCString() + ";path=/";
         location.reload();
-    });
+    });*/
     
+    var table = fetch_data();
+
+    $("#tb tbody").on('click', 'tr', function(){
+        var data = table.row(this).data();
+        window.location.replace("view.php?board_id=" + data[0]);
+    });
+
+    $("#btn_search").on('click', function(){
+        var val = $("#search_mode").val();
+        var keyword = $("#keyword").val();
+        table.destroy();
+        table = fetch_data(val, keyword);
+    })
 });
 
 function getNum(value){
@@ -35,4 +48,26 @@ function getCookie(name) {
             return c.substring(nameEQ.length,c.length);
     }
     return null;
+}
+
+function fetch_data(mode = '', keyword = ''){
+    var table = $("#tb").DataTable({
+        "processing" : true,
+        "serverSide" : true,
+        "lengthMenu": [30,50],
+        "paging": true,
+        "pagingType": "simple_numbers",
+        "ordering" : false,
+        "info" : false,
+        "searching" : false,
+        "ajax" : {
+            url : "script/fetch.php",
+            type : "POST",
+            data : {
+                mode : mode,
+                keyword : keyword
+            }
+        }
+    });
+    return table;
 }

@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         ":file_id" => md5(uniqid(rand(), true)),
                         ":board_id" => $id,
                         ":file_name_origin" => $file_name_origin,
-                        ":file_name_save" => md5(microtime()).".".$fileType
+                        ":file_name_save" => $file_name_save
                     );
                     
                     if (move_uploaded_file($_FILES["files"]["tmp_name"][$i], $target_file)) {                            

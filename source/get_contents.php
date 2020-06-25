@@ -19,6 +19,8 @@ if(isset($_GET["board_id"])){
     $result["table_attach"] = $rows;
 
     print_r(json_encode($result));
+
+    
 }else{
     echo "0";
 }

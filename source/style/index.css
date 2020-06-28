@@ -54,3 +54,7 @@
     color: #7A7A7A;
     padding: 0px 10px 0px 10px;
 }
+
+.page{
+    display: inline-block;
+}

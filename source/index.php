@@ -14,8 +14,8 @@ write_table();
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/css/bootstrap.css">
-    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/dataTables.bootstrap.css">-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="style/index.css">
     <style>
         body {
@@ -40,19 +40,6 @@ write_table();
     </header>
     <main>
         <div class="container">
-            <div class="row col-12">
-                <!--<div class="col-3">
-                    <select id="amt_contents">
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="50">50</option>
-                    </select>
-                    <label> 개의 글 표시</label>
-                </div>-->
-                <div class="col-2 offset-md-10" id="write">
-                    <a href="./writing.php">글쓰기</a>
-                </div>
-            </div>
             <div class="row" id="search">
                 <div class="row col-12">
                     <div class="col-2">
@@ -87,8 +74,8 @@ write_table();
                         </table>
                     </div>
                 </div>
-                <div class="col-8" id="index">
-                    <?php write_index(); ?>
+                <!--<div class="col-8" id="index">
+                    <?php write_index(); ?>-->
                 </div>
             </div>
         </div>
@@ -96,12 +83,9 @@ write_table();
     </main>
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
-    <!--<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/dataTables.bootstrap.js"></script>-->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

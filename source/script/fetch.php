@@ -39,7 +39,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     function get_all_data($query){
-        //$query = "SELECT count(*) FROM board";
         $result = DB::query1($query);
         return strval($result[0]["count(*)"]);
     }

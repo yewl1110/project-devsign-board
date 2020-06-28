@@ -52,7 +52,7 @@ if(isset($_SESSION["id"])){
                         </div>
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="auto_login">
+                                <input class="form-check-input" type="checkbox" id="auto_login" name="auto_login">
                                 <label class="form-check-label" for="auto_login">자동로그인</label>
                             </div>
                         </div>

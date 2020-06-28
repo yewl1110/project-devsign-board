@@ -19,6 +19,9 @@ $(document).ready(function(){
     });*/
     
     var table = fetch_data();
+    $(".top").css("display", "inline-block")
+    .css("width", "100%");
+    $(".top .dt-buttons").css("float", "right");
 
     $("#tb tbody").on('click', 'tr', function(){
         var data = table.row(this).data();
@@ -34,7 +37,7 @@ $(document).ready(function(){
 });
 
 function getNum(value){
-    window.location.replace("view.php?board_id=" + value);
+    window.location.replace("./writing.php");
 }
 
 function getCookie(name) {
@@ -52,15 +55,24 @@ function getCookie(name) {
 
 function fetch_data(mode = '', keyword = ''){
     var table = $("#tb").DataTable({
-        "processing" : true,
-        "serverSide" : true,
-        "lengthMenu": [30,50],
-        "paging": true,
-        "pagingType": "simple_numbers",
-        "ordering" : false,
-        "info" : false,
-        "searching" : false,
-        "ajax" : {
+        dom : '<"top"lB>t<"page"p>',
+        buttons : [
+            {
+                text: '글쓰기',
+                action: function ( e, dt, node, config ) {
+                    window.location.replace("./writing.php");
+                }
+            }
+        ],
+        processing : true,
+        serverSide : true,
+        lengthMenu: [30,50],
+        paging: true,
+        pagingType: "simple_numbers",
+        ordering : false,
+        info : false,
+        searching : false,
+        ajax : {
             url : "script/fetch.php",
             type : "POST",
             data : {

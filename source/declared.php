@@ -1,7 +1,9 @@
 <?php
 
 function getRootURL(){
-    return 'http://hotcat2.ddns.net:40080/pi/project-devsign-board/source';
+    $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+    //return 'http://hotcat.ddns.net:40080/pi/project-devsign-board/source';
+    return $root;
 }
 
 function write_header_manu(){
@@ -13,17 +15,17 @@ function write_header_manu(){
     if(isset($_SESSION["id"])){
         $id = $_SESSION["id"];
         /*echo '<a href="'.$home.'/member_info.php">마이페이지</a> <a href="'.$home.'/logout.php">로그아웃</a><br>
-        <label>'.$id.' 님 환영합니다</label>';*/
+        <label>'.$id.' 님 환영합니다</label>';*/ 
         echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'/member_info.php">마이페이지</a>
+        <a class="nav-link" href="'.$home.'member_info.php">마이페이지</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="'.$home.'/logout.php">로그아웃</a>
+        <a class="nav-link" href="'.$home.'logout.php">로그아웃</a>
         </li>';
     }else{
         //echo '<a href="'.$home.'/login.php">로그인</a>';
         echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'/login.php">로그인</a>
+        <a class="nav-link" href="'.$home.'login.php">로그인</a>
         </li>';
     }
 }
@@ -45,7 +47,7 @@ function write_header(){
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
     <li class="nav-item active">
-    <a class="nav-link" href="'.$home.'/index.php">Home <span class="sr-only">(current)</span></a>
+    <a class="nav-link" href="'.$home.'index.php">Home <span class="sr-only">(current)</span></a>
     </li>
     </ul>
     </div>

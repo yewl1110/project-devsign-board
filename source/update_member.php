@@ -1,6 +1,8 @@
 <?php
 require_once("db.class.php");
+require_once("auth_class.php");
 require_once("errors.php");
+
 
 if(isset($_POST["id"])){
     DB::connect();
@@ -18,6 +20,7 @@ if(isset($_POST["id"])){
             $query = "UPDATE member SET name = :name, nickname = :nickname, password = :password WHERE id = :id";
             $params[":password"] = password_hash($_POST["new_password"], PASSWORD_DEFAULT);
             DB::query2($query, $params);
+            Auth::logout();
             echo 1;
         }
     }else{

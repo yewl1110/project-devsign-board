@@ -1,6 +1,7 @@
 <?php
 require_once('declared.php');
 require_once('db.class.php');
+require_once('auth.class.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -22,32 +23,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("Location:".getRootURL()."/login.php?message=ACCOUNT_WRONG");
             exit(0);
         }else{
-            $_SESSION["id"] = $rows['0']["id"];
-            $_SESSION["email"] = $rows['0']["email"];
-            $_SESSION["name"] = $rows['0']["name"];
-            $_SESSION["nickname"] = $rows['0']["nickname"];
+            $account = array(
+                "id" => $rows['0']["id"],
+                "email" => $rows['0']["email"],
+                "name" => $rows['0']["name"],
+                "nickname" => $rows['0']["nickname"]
+            );
+            Auth::login($account);
         }
 
         if(isset($_POST["auto_login"])){
-            $token = bin2hex(random_btyes(64));
-            DB::query2("DELETE FROM auth_tokens WHERE id = :id", array(":id" => $_POST["id"]));
-            DB::query2("INSERT INTO auth_tokens VALUES (:id, :token, :expires)",
-            array(
-                ":id" => $_POST["id"],
-                ":token" => $token,
-                ":expires" => strtotime(date('Y-m-d', strtotime('+3 days')));
-            ));
-
-            if(isset($_COOKIE["id"])){
-                unset($_COOKIE["id"]); 
-                setcookie("id", null, -1, '/'); 
-            }
-            if(isset($_COOKIE["token"])){
-                unset($_COOKIE["token"]); 
-                setcookie("token", null, -1, '/'); 
-            }
-            setcookie("id", $_POST["id"], time()+3600*24*3, "/");
-            setcookie("token", hash("sha256", $token), time()+3600*24*3, "/");
+            Auth::set_auto_login($_POST["id"]);
         }
     }
     header("Location:".getRootURL()."/index.php");

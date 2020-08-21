@@ -1,9 +1,14 @@
 <?php 
 require_once("declared.php");
 require_once("db.class.php");
+require_once("auth.class.php");
+
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+if(isset($_COOKIE["auto_login"])){
+    Auth::check_auto_login();
 }
 
 $id = null;
@@ -44,7 +49,7 @@ if(isset($_SESSION["id"])){
                             <pre></pre>
                         </div>
                         <div class="files border col-12">
-                            <label>첨부파일</label><br>
+                            <label>첨부파일</label>
                         </div>
                         <div class="btn-group btn-group-sm col-2 offset-md-10" role="group" id="edit">
                             <button class="btn btn-secondary" id="btn_edit">수정</button>

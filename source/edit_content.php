@@ -32,8 +32,8 @@ if(!isset($_SESSION["id"])){
     <main>
         <div class="container">
             <div class="row justify-content-around">
-                <div class="col-8">
-                    <form action="update_contents.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
+                <div class="col-12">
+                    <form action="insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
                         <div class="form-row">
                             <div class="col-12">
                                 <input class="form-control" type="text" id="subject" name="subject" required/>
@@ -56,21 +56,30 @@ if(!isset($_SESSION["id"])){
                         </div>
                         <div class="form-row">
                             <div class="col-12">
-                                <input id="board_id" name="board_id">
+                                <input id="board_id" name="board_id"/>
                                 <textarea id="contents_submit" name="contents"></textarea>
                                 <div class="form-control" contenteditable="true" id="contents" required></div>
                             </div>
                         </div>
+                        <!--drop drag-->
                         <div class="form-row">
                             <div class="col-12">
-                                <div class="file_upload">
-                                    <input type="file" id="files" name="files[]" multiple="multiple">
+                                <div class="file_upload" id="drop-area">
+                                    <p><label for="files">Choose a file or drag it here.</label></p>
+                                    <input type="file" id="files" name="files" multiple="multiple">
+                                    <div id="message"><label></label></div>
+                                    <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span>
+                                    <div id="file_info">
+                                        <table>
+
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-around" id="buttons">
                             <div class="col-3">
-                                <input class="btn btn-dark" type="submit" id="btn_submit" name="submit" value="Edit">
+                                <input class="btn btn-dark" type="button" id="btn_submit" name="submit" value="Submit">
                             </div>
                             <div class="col-3">
                                 <input class="btn btn-dark" type="button" value="Cancel" onclick="window.history.back();">
@@ -84,7 +93,6 @@ if(!isset($_SESSION["id"])){
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/a.js"></script>
+    <script type="text/javascript" src="js/writing.js"></script>
     <script type="text/javascript" src="js/edit.js"></script>
-</body>
 </html>

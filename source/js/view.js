@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
     
     function writeAttachFile(row){
-        var url = "http://hotcat.ddns.net:40080/pi/project-devsign-board/source/download.php?download="+row['file_name_save'];
+        var url = "http://hotcat.ddns.net:40080/download.php?download="+row['file_name_save'];
         return '<span><a href="'+url+'">'+row['file_name_origin']+'</a></span>';
     }
     

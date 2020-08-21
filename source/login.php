@@ -10,7 +10,7 @@ if(isset($_GET["message"])){
 }
 
 if(isset($_SESSION["id"])){
-    exit;
+    header("Location: ".getRootURL());
 }
 ?>
 <!DOCTYPE html>

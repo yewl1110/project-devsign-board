@@ -39,7 +39,7 @@ if(!isset($_SESSION["id"])){
                 <nav class="col-2 d-none d-md-block bg-light sidebar" id="side">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <h5><a class="nav-link active" href=".">정보변경</a></h5>
+                            <h5><a class="nav-link active" href="member_info.php">정보변경</a></h5>
                         </li>
                         <li class="nav-item">
                             <h5><a class="nav-link" href="withdraw.php">회원탈퇴</a></h5>
@@ -88,7 +88,6 @@ if(!isset($_SESSION["id"])){
                                     <input type="text" class="form-control" id="nickname" name="nickname">
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Edit">
-                                <!--<button type="submit" class="btn btn-primary">Edit</button>-->
                             </form>
                         </div>
                     </div>

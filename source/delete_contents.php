@@ -10,10 +10,9 @@ if(isset($_GET["board_id"]) && isset($_SESSION["id"])){
     DB::connect();
     $rows = DB::query2("SELECT file_name_save FROM table_attach WHERE board_id = :board_id", 
     array(":board_id" => $_GET["board_id"]));
-    $target_dir = "../../files/";
 
     foreach($rows as $file){
-        unlink($target_dir.$file["file_name_save"]);
+        unlink(DB::getFilePath().$file["file_name_save"]);
     }
 
     DB::query2("DELETE FROM table_attach WHERE board_id = :board_id",

@@ -1,8 +1,12 @@
 <?php 
 require_once('declared.php');
+require_once("auth.class.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+if(isset($_COOKIE["auto_login"])){
+    Auth::check_auto_login();
 }
 if(!isset($_SESSION["id"])){
     header("Location:".getRootURL()."/index.php?message=NO_AUTH");
@@ -29,8 +33,8 @@ if(!isset($_SESSION["id"])){
     <main>
         <div class="container">
             <div class="row justify-content-around">
-                <div class="col-8">
-                    <form action="insert_contents.php" method="post" onsubmit="return submitContents();" enctype="multipart/form-data">
+                <div class="col-12">
+                    <form action="insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
                         <div class="form-row">
                             <div class="col-12">
                                 <input class="form-control" type="text" id="subject" name="subject" required/>
@@ -57,19 +61,25 @@ if(!isset($_SESSION["id"])){
                                 <div class="form-control" contenteditable="true" id="contents" required></div>
                             </div>
                         </div>
-                        <!--drop drag 예제-->
+                        <!--drop drag-->
                         <div class="form-row">
                             <div class="col-12">
                                 <div class="file_upload" id="drop-area">
-                                    <input type="file" id="files" name="files[]" multiple="multiple">
-                                    <p><label for="files">Choose a file or drag it here.</label></p>
-                                    <p><label></label></p>
+                                    <div><label for="files">Choose a file or drag it here.</label></div>
+                                    <input type="file" id="files" name="files" multiple="multiple">
+                                    <div id="message"><label></label></div>
+                                    <div><span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span></div>
+                                    <div id="file_info">
+                                        <table>
+
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-around" id="buttons">
                             <div class="col-3">
-                                <input class="btn btn-dark" type="submit" id="btn_submit" name="submit" value="Submit">
+                                <input class="btn btn-dark" type="button" id="btn_submit" name="submit" value="Submit">
                             </div>
                             <div class="col-3">
                                 <input class="btn btn-dark" type="button" value="Cancel" onclick="window.history.back();">

@@ -15,12 +15,10 @@ if(isset($_GET["board_id"])){
         DB::query2("UPDATE board SET hits = hits + 1 WHERE board_id = :id", array(":id" => $_GET["board_id"]));
     }
     
-    $rows = DB::query2("SELECT file_name_origin, file_name_save FROM table_attach WHERE board_id = :id", array(":id" => $_GET["board_id"]));
+    $rows = DB::query2("SELECT file_id, file_name_origin FROM table_attach WHERE board_id = :id", array(":id" => $_GET["board_id"]));
     $result["table_attach"] = $rows;
 
     print_r(json_encode($result));
-
-    
 }else{
     echo "0";
 }

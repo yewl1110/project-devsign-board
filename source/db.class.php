@@ -54,5 +54,9 @@ class DB{
             return self::$conn->lastInsertId();
         }
     }
+
+    public static function getFilePath(){
+        return "../../files/";
+    }
 }
 ?>

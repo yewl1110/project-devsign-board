@@ -98,10 +98,6 @@ function write_table(){
             $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
         }
         
-        /*$GLOBALS['cur_page'] = $_GET['page'];
-        if($GLOBALS['cur_page'] > $GLOBALS['full_pages']){
-            $GLOBALS['cur_page'] = $GLOBALS['full_pages'];
-        }*/
         $offset = ($GLOBALS['cur_page'] - 1) * $amt_contents;
         $paging = "ORDER BY board_id DESC LIMIT {$offset}, {$amt_contents}";
     }

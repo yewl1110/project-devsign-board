@@ -11,7 +11,7 @@ class ErrorManager {
     );
 
     public static function write_log($message){
-        $logPath = $_SERVER['DOCUMENT_ROOT'].'/pi/log/error_log.txt';
+        $logPath = $_SERVER['DOCUMENT_ROOT'].'/../../log/error_log.txt';
 
         $cur_time = date("Y-m-d h:i:s", mktime());
         $result = '['.$cur_time.']'.$message."\n";

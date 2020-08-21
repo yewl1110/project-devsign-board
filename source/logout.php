@@ -1,13 +1,12 @@
 <?php
 require_once('declared.php');
+require_once('auth.class.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-session_destroy();
-$_SESSION = [];
-setcookie(session_name(), '', 1);
+Auth::logout();
 
 header("Location:".getRootURL()."/index.php");
 ?>

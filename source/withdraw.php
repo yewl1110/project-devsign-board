@@ -1,7 +1,12 @@
 <?php
 require_once("declared.php");
+require_once("auth.class.php");
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+if(isset($_COOKIE["auto_login"])){
+    Auth::check_auto_login();
 }
 if(!isset($_SESSION["id"])){
     header("Location: index.php?message=NO_AUTH");

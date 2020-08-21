@@ -1,7 +1,12 @@
 <?php
-require_once('contents_list.php');
 require_once('declared.php');
 require_once("errors.php");
+require_once("auth.class.php");
+require_once('contents_list.php');
+
+if(isset($_COOKIE["auto_login"])){
+    Auth::check_auto_login();
+}
 
 if(isset($_GET["message"])){
     ErrorManager::requestAlert($_GET["message"]);
@@ -70,8 +75,8 @@ write_table();
                                     <th style="width:200px;"><label>날짜</label></th>
                                 </tr>
                             </thead>
-                            <!--<?php write_list();?>-->
                         </table>
+                            <!--<?php write_list();?>-->
                     </div>
                 </div>
                 <!--<div class="col-8" id="index">

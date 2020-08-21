@@ -3,7 +3,8 @@ require_once("db.class.php");
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET["download"])){
-        $filePath = $_SERVER['DOCUMENT_ROOT']."/pi/files/".$_GET["download"];
+        //$filePath = $_SERVER['DOCUMENT_ROOT']."/pi/files/".$_GET["download"];
+        $filePath = "../../files/".$_GET["download"];
         $fileSize = filesize($filePath);
         $path_parts = pathinfo($filePath);
         $fileName = $path_parts['basename'];

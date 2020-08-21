@@ -49,7 +49,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $allowDataType = array(
                 'jpg', 'png', 'jpeg', 'txt'
             );
-            $target_dir = "../../files/";
             $uploadOk = array_fill(0, 9, true);
             
             for($i = 0; $i < count($_FILES["files"]["name"]); $i++){
@@ -60,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
                 
                 //파일 확장자 검사
-                $target_file = $target_dir . basename($_FILES["files"]["name"][$i]);
+                $target_file = DB::getFilePath() . basename($_FILES["files"]["name"][$i]);
                 $fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
                 
                 $isAllowType = false;
@@ -88,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $file_name_origin = $_FILES["files"]["name"][$i];
                     $file_name_save = md5(microtime()).".".$fileType;
                     $fileType = strtolower(pathinfo($file_name_origin,PATHINFO_EXTENSION));
-                    $target_file = $target_dir.$file_name_save;
+                    $target_file = DB::getFilePath() . $file_name_save;
                     
                     $params = array(
                         ":file_id" => md5(uniqid(rand(), true)),
@@ -110,5 +109,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 }
-header("Location: http://hotcat.ddns.net:40080/pi");
+header("Location: http://hotcat.ddns.net:40080");
 ?>

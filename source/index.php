@@ -71,7 +71,7 @@ write_table();
                                     <th style="width:70px;"><label>번호</label></th>
                                     <th style="width:640px;"><label>제목</label></th>
                                     <th style="width:100px;"><label>작성자</label></th>
-                                    <th style="width:70px;"><label>조회 수</label></th>
+                                    <th style="width:70px;"><label>조회수</label></th>
                                     <th style="width:200px;"><label>날짜</label></th>
                                 </tr>
                             </thead>
@@ -91,6 +91,7 @@ write_table();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script id="dsq-count-scr" src="//hotcat-1.disqus.com/count.js" async></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

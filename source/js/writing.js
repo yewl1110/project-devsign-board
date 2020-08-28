@@ -1,12 +1,25 @@
 $(document).ready(function(){
-    $('#files').change(function(){
-        console.log("change");
-        var x = $('#files');
+    $('#files').change(function(e){
+        var files = e.target.files;
+        console.log(files);
 
-        if (x.files.length > 10) {
+        if (files.length > 10) {
             alert("파일 개수가 초과되었습니다.(10개 제한)");
             $('#files').val("");
             return;
+        }else{
+            for(var i = 0; i < files.length; i++){
+                if(check(files[i])){
+                    fileList.push(files[i]);
+                }        
+            }
+            $("#file_info > table").empty();
+            drawUploaded(fileList.length);
+            if(typeof(uploadedFiles) != "undefined"){
+                drawUploadedFile(uploadedFiles);
+            }
+            drawFile(fileList);
+            $('#files').val("");
         }
     });
 

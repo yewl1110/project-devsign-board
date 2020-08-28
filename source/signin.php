@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         array(":id" => $_POST["id"]));
         
         if(!$rows['0'] || !password_verify($_POST["passwd"], $rows['0']["password"])){
-            header("Location:".getRootURL()."/login.php?message=ACCOUNT_WRONG");
+            header("Location:".getRootURL()."login.php?message=ACCOUNT_WRONG");
             exit(0);
         }else{
             $account = array(
@@ -36,6 +36,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Auth::set_auto_login($_POST["id"]);
         }
     }
-    header("Location:".getRootURL()."/index.php");
+    header("Location:".getRootURL()."index.php");
 }
 ?>

@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     foreach($rows as $row){
         $sub_array = array();
         $sub_array[] = $row['board_id'];
-        $sub_array[] = $row['subject'];
+        $sub_array[] = $row['subject'] . ' <a href="view.php?board_id=' . $row['board_id']. '#disqus_thread"></a>';
         $sub_array[] = $row['user_name'];
         $sub_array[] = $row['hits'];
         $sub_array[] = $row['reg_date'];

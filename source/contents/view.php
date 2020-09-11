@@ -1,7 +1,7 @@
 <?php
-require_once("declared.php");
-require_once("db.class.php");
-require_once("auth.class.php");
+require_once("../declared.php");
+require_once("../db.class.php");
+require_once("../auth.class.php");
 
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -21,7 +21,7 @@ if (isset($_SESSION["id"])) {
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
-    <link rel="stylesheet" href="style/post.css">
+    <link rel="stylesheet" href="../style/post.css">
     <style>
         body {
             background-color: #FAFAFA;
@@ -69,7 +69,7 @@ if (isset($_SESSION["id"])) {
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/view.js"></script>
+    <script type="text/javascript" src="../js/view.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             var id = '<?php echo $id; ?>';

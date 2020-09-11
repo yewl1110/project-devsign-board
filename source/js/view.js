@@ -2,7 +2,7 @@ $(document).ready(function(){
     var params = new URLSearchParams(window.location.search);
     var data = null;
     $.ajax({
-        url: "get_contents.php?board_id=" + params.get("board_id"),
+        url: "../contents/get_contents.php?board_id=" + params.get("board_id"),
         type: "get",
         dataType: "json",
         async: false,
@@ -34,20 +34,20 @@ $(document).ready(function(){
     });
     
     $("#btn_edit").click( function(){
-        window.location.href = "edit_content.php?board_id=" + params.get("board_id");
+        window.location.href = "../contents/edit_content.php?board_id=" + params.get("board_id");
     });
     
     $("#btn_remove").click(
         function(){
             if(confirm("삭제하시겠습니까?")){
-                window.location.href = "delete_contents.php?board_id=" + params.get("board_id");
+                window.location.href = "../contents/delete_contents.php?board_id=" + params.get("board_id");
             }
         }
         );
     });
     
     function writeAttachFile(row){
-        var url = "http://hotcat.ddns.net:40080/download.php?download="+row['file_name_save'];
+        var url = "http://hotcat.ddns.net:40080/contents/download.php?download="+row['file_name_save'];
         return '<span><a href="'+url+'">'+row['file_name_origin']+'</a></span>';
     }
     

@@ -1,7 +1,7 @@
 <?php
-require_once("declared.php");
-require_once("db.class.php");
-require_once('errors.php');
+require_once(" ../declared.php");
+require_once("../db.class.php");
+require_once('../errors.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

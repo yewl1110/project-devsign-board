@@ -1,5 +1,5 @@
 <?php 
-require_once('declared.php');
+require_once('../declared.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -70,7 +70,7 @@ if(!isset($_SESSION["id"])){
                                     <div id="message"><label></label></div>
                                     <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span>
                                     <div id="file_info">
-                                        <table>
+                                        <table class="table">
 
                                         </table>
                                     </div>
@@ -93,6 +93,6 @@ if(!isset($_SESSION["id"])){
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/writing.js"></script>
-    <script type="text/javascript" src="js/edit.js"></script>
+    <script type="text/javascript" src="../js/writing.js"></script>
+    <script type="text/javascript" src="../js/edit.js"></script>
 </html>

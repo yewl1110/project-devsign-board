@@ -1,6 +1,6 @@
 <?php
-require_once("db.class.php");
-require_once("declared.php");
+require_once("../db.class.php");
+require_once("../declared.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

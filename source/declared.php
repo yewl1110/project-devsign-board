@@ -17,15 +17,15 @@ function write_header_manu(){
         /*echo '<a href="'.$home.'/member_info.php">마이페이지</a> <a href="'.$home.'/logout.php">로그아웃</a><br>
         <label>'.$id.' 님 환영합니다</label>';*/ 
         echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'member_info.php">마이페이지</a>
+        <a class="nav-link" href="'.$home.'member/member_info.php">마이페이지</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="'.$home.'logout.php">로그아웃</a>
+        <a class="nav-link" href="'.$home.'auth/logout.php">로그아웃</a>
         </li>';
     }else{
         //echo '<a href="'.$home.'/login.php">로그인</a>';
         echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'login.php">로그인</a>
+        <a class="nav-link" href="'.$home.'auth/login.php">로그인</a>
         </li>';
     }
 }

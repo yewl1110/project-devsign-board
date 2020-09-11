@@ -21,7 +21,7 @@ $(document).ready(function(){
             drawUploaded(keys.length);
             
             keys.forEach(key =>{
-                var file_record = '<tr><td style="display:none;"><label>' +  '-1' + '</label></td><td style="display:none;"><label>' + key + '</label></td><td><label>' + uploadedFiles[key] + '</label></td><td><label>' + 0 + '</label></td><td><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>';
+                var file_record = '<tr><td style="display:none;"><label>' +  '-1' + '</label></td><td style="display:none;"><label>' + key + '</label></td><td style="width: 90%;"><label>' + uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>';
                 $("#file_info > table").append(file_record);
             });
             return false;

@@ -19,10 +19,10 @@ if(isset($_SESSION["id"]) && isset($_POST["password"])){
             );
         }
         session_destroy();
+        header("Location: index.php");
     }else{
         header("Location: index.php?message=PASSWORD_WRONG");
     }
-    header("Location: index.php");
 }else{
     header("Location: index.php?message=NO_AUTH");
 }

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var home = "http://hotcat2.ddns.net:40080/pi/project-devsign-board/source";
+    var home = "http://hotcat.ddns.net:40080/";
     var id_check = false;
     var password_check = false;
     var email_check = false;
@@ -29,7 +29,7 @@ $(document).ready(function(){
             $("#message_id").text("5~15자, 알파벳, 숫자, _만 사용 가능");
         }else{
             $.ajax({
-                url:"check.php?id="+value,
+                url:"../member/check.php?id="+value,
                 type:"get",
                 success:function(result){
                     if(result == "0"){
@@ -66,7 +66,7 @@ $(document).ready(function(){
         }
         else{
             $.ajax({
-                url:"check.php?email="+value,
+                url:"../member/check.php?email="+value,
                 type:"get",
                 success:function(result){
                     if(result == "0"){

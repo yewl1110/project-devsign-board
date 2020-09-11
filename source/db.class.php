@@ -19,6 +19,7 @@ class DB{
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }catch(PDOException $e){
                 ErrorManager::write_log($e->getMessage());
+                throw $e;
             }
         }
     }

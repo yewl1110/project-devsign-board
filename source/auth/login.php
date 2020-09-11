@@ -1,6 +1,6 @@
 <?php
-require_once('declared.php');
-require_once("errors.php");
+require_once('../declared.php');
+require_once("../errors.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -18,7 +18,7 @@ if(isset($_SESSION["id"])){
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
-    <link href="style/login.css" rel="stylesheet" type="text/css">
+    <link href="../style/login.css" rel="stylesheet" type="text/css">
     <style>
         body{
             background-color:#FAFAFA;
@@ -59,7 +59,7 @@ if(isset($_SESSION["id"])){
                         <div class="form-group">
                             <?php
                             echo '
-                            <a href="'.getRootURL().'/register_member.php">회원가입</a>
+                            <a href="'.getRootURL().'member/register_member.php">회원가입</a>
                             <a href="">아이디/비밀번호 찾기</a>
                             ';
                             ?>

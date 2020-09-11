@@ -1,5 +1,5 @@
 <?php
-require_once("db.class.php");
+require_once("../db.class.php");
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET["download"])){

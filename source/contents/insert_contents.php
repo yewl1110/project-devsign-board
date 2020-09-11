@@ -1,6 +1,8 @@
 <?php 
-require_once('errors.php');
-require_once('db.class.php');
+require_once('../errors.php');
+require_once('../db.class.php');
+require_once('../declared.php');
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -109,5 +111,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 }
-header("Location: http://hotcat.ddns.net:40080");
+header("Location:".getRootURL());
 ?>

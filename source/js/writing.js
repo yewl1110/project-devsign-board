@@ -14,12 +14,14 @@ $(document).ready(function(){
                 }        
             }
             $("#file_info > table").empty();
-            drawUploaded(fileList.length);
-            if(typeof(uploadedFiles) != "undefined"){
-                drawUploadedFile(uploadedFiles);
+            if(fileList.length > 0){
+                drawUploaded(fileList.length);
+                if(typeof(uploadedFiles) != "undefined"){
+                    drawUploadedFile(uploadedFiles);
+                }
+                drawFile(fileList);
+                $('#files').val("");
             }
-            drawFile(fileList);
-            $('#files').val("");
         }
     });
 
@@ -41,7 +43,8 @@ $(document).ready(function(){
     .attr("draggable", false)
     .click(cancel);
 
-    $("#message").css("position", "relative");
+    $("#message").css("position", "relative")
+    .attr("draggable", false);
 
     $('.file_upload').css('overflow-y', 'auto');
 
@@ -64,7 +67,7 @@ function submitContents(){
     }
 
     $.ajax({
-        url:"insert_contents.php",
+        url:"../contents/insert_contents.php",
         data:formData,
         type:'POST',
         processData:false,
@@ -114,11 +117,14 @@ function handleDrop(e){
         }        
     }
     $("#file_info > table").empty();
-    drawUploaded(count);
-    if(typeof(uploadedFiles) != "undefined"){
-        drawUploadedFile(uploadedFiles);
+    if(fileList.length > 0){
+        drawUploaded(fileList.length);
+        if(typeof(uploadedFiles) != "undefined"){
+            drawUploadedFile(uploadedFiles);
+        }
+        drawFile(fileList);
+        $('#files').val("");
     }
-    drawFile(fileList);
 }
 
 // 파일 형식, 크기 체크
@@ -157,7 +163,7 @@ function drawGuide(){
 function drawFile(files){
     var index = 0;
     files.forEach(file => {
-        var file_record = '<tr><td style="display:none;"><label>' + index + '</label></td><td><label>' + file.name + '</label></td><td><label>' + file.size + '</label></td><td><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeRow(this)"></td></tr>';
+        var file_record = '<tr><td style="display:none;"><label>' + index + '</label></td><td style="width: 90%;"><label>' + file.name + '</label></td><td style="width: 10%;"><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeRow(this)"></td></tr>';
         $("#file_info > table").append(file_record);
         index++;
     });
@@ -221,7 +227,7 @@ function drawUploadedFile(files){
     var keys = Object.keys(files);
             
     keys.forEach(key =>{
-        var file_record = '<tr><td style="display:none;"><label>' +  '-1' + '</label></td><td style="display:none;"><label>' + key + '</label></td><td><label>' + files[key] + '</label></td><td><label>' + 0 + '</label></td><td><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>';
+        var file_record = '<tr><td style="display:none;"><label>' +  '-1' + '</label></td><td style="display:none;"><label>' + key + '</label></td><td style="width: 90%;"><label>' + uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn btn-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>';
         $("#file_info > table").append(file_record);
     });
 }

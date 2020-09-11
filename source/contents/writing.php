@@ -1,6 +1,6 @@
 <?php 
-require_once('declared.php');
-require_once("auth.class.php");
+require_once('../declared.php');
+require_once("../auth.class.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -9,14 +9,14 @@ if(isset($_COOKIE["auto_login"])){
     Auth::check_auto_login();
 }
 if(!isset($_SESSION["id"])){
-    header("Location:".getRootURL()."/index.php?message=NO_AUTH");
+    header("Location:".getRootURL()."index.php?message=NO_AUTH");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
-    <link href="style/writing.css" rel="stylesheet" type="text/css">
+    <link href="../style/writing.css" rel="stylesheet" type="text/css">
     <style>
         body{
             background-color:#FAFAFA;
@@ -65,13 +65,19 @@ if(!isset($_SESSION["id"])){
                         <div class="form-row">
                             <div class="col-12">
                                 <div class="file_upload" id="drop-area">
-                                    <div><label for="files">Choose a file or drag it here.</label></div>
+                                    <p><label for="files">Choose a file or drag it here.</label></p>
                                     <input type="file" id="files" name="files" multiple="multiple">
                                     <div id="message"><label></label></div>
-                                    <div><span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span></div>
+                                    <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span>
                                     <div id="file_info">
-                                        <table>
-
+                                        <table class="table">
+                                            <thead>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -93,6 +99,6 @@ if(!isset($_SESSION["id"])){
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/writing.js"></script>
+    <script type="text/javascript" src="../js/writing.js"></script>
 </body>
 </html>

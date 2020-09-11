@@ -73,7 +73,7 @@ function fetch_data(mode = '', keyword = ''){
         info : false,
         searching : false,
         ajax : {
-            url : "script/fetch.php",
+            url : "../script/fetch.php",
             type : "POST",
             data : {
                 mode : mode,

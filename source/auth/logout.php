@@ -8,5 +8,5 @@ if (session_status() == PHP_SESSION_NONE) {
 
 Auth::logout();
 
-header("Location:".getRootURL()."/index.php");
+header("Location:".getRootURL()."index.php");
 ?>

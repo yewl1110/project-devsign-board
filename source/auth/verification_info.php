@@ -1,9 +1,7 @@
 <?php
-require_once('../auth.class.php');
 
-//email정보 POST로받아서 메일 보내기
-function sendMail()
-{
+if (session_status() != PHP_SESSION_NONE) {
+    header("Location:" . $_SERVER["HTTP_REFERER"]);
 }
 ?>
 
@@ -28,5 +26,23 @@ function sendMail()
         <button onclick="sendMail()">다시 전송</button>
     </main>
 </body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+<script>
+    function sendMail() {
+        var params = new URLSearchParams(window.location.search);;
+
+        $.ajax({
+            url: "/auth/send_mail.php?id=" + params.get('id') + "&email=" + params.get('email'),
+            type: "get",
+            async: false,
+            success: function(result) {
+                if (!alert('재전송완료')) {
+                    history.back();
+                }
+            }
+        });
+    }
+</script>
 
 </html>

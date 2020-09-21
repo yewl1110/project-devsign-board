@@ -1,7 +1,7 @@
 <?php
-require_once('declared.php');
-require_once('db.class.php');
-require_once('mail.class.php');
+require_once('../declared.php');
+require_once('../db.class.php');
+require_once('../mail.class.php');
 
 class Auth
 {
@@ -15,7 +15,13 @@ class Auth
                 $_SESSION[$key] = $value;
             }
         } else {
-            // 인증 페이지로 이동시킴
+            // 인증 페이지로 이동시킴 POST로 ID도 같이 보내야함
+
+            $url = getRootURL() . "auth/verification_info.php";
+            $data = array('id' => $account['id'], 'email' => $account['email']);
+
+            header("Location: " . getRootURL() . "auth/verification_info.php?" . http_build_query($data));
+            return;
         }
     }
 
@@ -130,18 +136,18 @@ class Auth
     }
 
     // 이메일 인증키 생성, 인증 메일 전송
-    public static function send_verification_mail($id)
+    public static function send_verification_mail($id, $email)
     {
         DB::connect();
         $email_key = hash('sha256', rand());
         $row = DB::query2(
-            "SELECT email, name FROM member WHERE id = :id",
+            "SELECT email, name, email_key FROM member WHERE id = :id",
             array(
                 ":id" => $id
             )
         );
 
-        if ($row[0]["email"] != '') {
+        if ($row[0]["email"] == $email && $row[0]['email_key'] != '') {
             DB::query2(
                 "UPDATE member SET email_key = :email_key WHERE email = :email",
                 array(

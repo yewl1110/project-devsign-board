@@ -9,7 +9,7 @@ if (session_status() != PHP_SESSION_NONE) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST["id"]) {
+    if (isset($_POST["id"])) {
         DB::connect();
         DB::query2(
             "INSERT INTO member VALUES (:id, :passwd, :email, :name, :nickname, :email_key)",
@@ -19,12 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ":email" => $_POST["email"],
                 ":name" => $_POST["id"],
                 ":nickname" => $_POST["id"],
-                ":email_key" => ''
+                ":email_key" => '0'
             )
         );
 
-        Auth::send_verification_mail($_POST["id"]);
-        header("Location: " . getRootURL());
+        Auth::send_verification_mail($_POST["id"], $_POST['email']);
+        $data = array(
+            'id' => base64_encode($_POST['id']),
+            'email' => base64_encode($_POST['email'])
+        );
+        header("Location: " . getRootURL() . 'auth/verification_info.php?' . http_build_query($data));
     }
 }
 ?>

@@ -56,5 +56,4 @@ function write_header(){
     echo '</ul>
     </nav>';
 }
-
 ?>

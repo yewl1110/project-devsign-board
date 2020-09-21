@@ -1,8 +1,19 @@
+.view {
+    max-width: 960px;
+    padding: 0;
+}
+
+.post-wrapper{
+    box-sizing: border-box;
+    margin: 0 5px 0 5px;
+}
+
 .post{
     background-color: white;
     padding: 20px 10px 20px 10px;
     border: 1px solid black;
     border-radius: 20px;
+    box-sizing: inherit;
 }
 .post-meta{
     margin-bottom: 1.25rem;

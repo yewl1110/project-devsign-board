@@ -20,8 +20,11 @@ if (isset($_SESSION["id"])) {
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link rel="stylesheet" href="../style/post.css">
+    <link rel="stylesheet" href="../style/theme.css">
     <style>
         body {
             background-color: #FAFAFA;
@@ -38,8 +41,8 @@ if (isset($_SESSION["id"])) {
         <?php write_header(); ?>
     </header>
     <main>
-        <div class="container">
-            <div class="row justify-content-start">
+        <div class="container-lg view">
+            <div class="row justify-content-start post-wrapper">
                 <div class="col-12">
                     <div class="row post">
                         <div class="post-title col-12">
@@ -62,7 +65,7 @@ if (isset($_SESSION["id"])) {
                         <div class="other col-12"></div>
                     </div>
                 </div>
-                <div class="col-12" id="disqus_thread"></div>
+                    <div class="col-12" id="disqus_thread"></div>
             </div>
         </div>
     </main>

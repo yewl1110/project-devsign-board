@@ -20,20 +20,11 @@ if (isset($_SESSION["id"])) {
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link rel="stylesheet" href="../style/post.css">
     <link rel="stylesheet" href="../style/theme.css">
-    <style>
-        body {
-            background-color: #FAFAFA;
-        }
-
-        .container {
-            padding: 100px 0 100px 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -46,7 +37,7 @@ if (isset($_SESSION["id"])) {
                 <div class="col-12">
                     <div class="row post">
                         <div class="post-title col-12">
-                            <h4 id="subject"></h4>
+                            <div id="subject"></div>
                         </div>
                         <div class="post-meta col-12">
                             <span id="user_id"></span>
@@ -61,8 +52,8 @@ if (isset($_SESSION["id"])) {
                             <button class="btn btn-secondary" id="btn_edit">수정</button>
                             <button class="btn btn-secondary" id="btn_remove">삭제</button>
                         </div>
-                        <div class="other col-12"></div>
-                        <div class="other col-12"></div>
+                        <!-- <div class="other col-12"></div>
+                        <div class="other col-12"></div> -->
                     </div>
                 </div>
                     <div class="col-12" id="disqus_thread"></div>

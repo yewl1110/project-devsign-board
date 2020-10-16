@@ -18,7 +18,7 @@ write_table();
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/jquery.dataTables.min.css">
@@ -33,7 +33,7 @@ write_table();
     </header>
     <main>
         <div class="container-xl">
-            <div class="row justify-content-around" id="search">
+            <!-- <div class="row justify-content-around" id="search">
                 <div class="col-md-2 col-3">
                     <select class="custom-select" id="search_mode">
                         <option value="1">제목+내용</option>
@@ -47,7 +47,8 @@ write_table();
                 <div class="col-md-2 col-2">
                     <button class="btn btn-secondary" id="btn_search" style="width: 100%">search</button>
                 </div>
-            </div>
+            </div> -->
+            <!-- 글 목록 -->
             <div class="row justify-content-center">
                 <div class="col-12 list">
                     <table id="tb" class="display">

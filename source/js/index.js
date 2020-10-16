@@ -29,15 +29,23 @@ $(document).ready(function () {
     $('#tb')
         .addClass('col-12')
         .css('width', '100%');
+
+    // 테이블 생성 후 search form 넣기
+    $('#tb_wrapper .top').after(search_form());
+
+    // 목록에서 게시글 행 누를 때
     $("#tb tbody").on('click', 'tr', function () {
-        var data = table.row(this).data();
+        var data = table
+            .row(this)
+            .data();
         // label 태그 제거
-        var board_id = data[0].replace( /(<([^>]+)>)/ig, '');
+        var board_id = data[0].replace(/(<([^>]+)>)/ig, '');
         window
             .location
             .replace("view.php?board_id=" + board_id);
     });
 
+    // 검색
     $("#btn_search").on('click', function () {
         var val = $("#search_mode").val();
         var keyword = $("#keyword").val();
@@ -67,6 +75,7 @@ function getCookie(name) {
     return null;
 }
 
+// datatables 데이터 가져오기
 function fetch_data(mode = '', keyword = '') {
     var table = $("#tb").DataTable({
         ajax: {
@@ -79,11 +88,15 @@ function fetch_data(mode = '', keyword = '') {
         },
         buttons: [
             {
-                text: '글쓰기',
                 action: function (e, dt, node, config) {
                     window
                         .location
                         .replace("./writing.php");
+                },
+                className: "btn btn-light btn-sm",
+                text: '글쓰기',
+                init: function (api, node, config) {
+                    $(node).removeClass('dt-button')
                 }
             }
         ],
@@ -91,12 +104,10 @@ function fetch_data(mode = '', keyword = '') {
             {
                 className: "tb_title",
                 targets: [1]
-            },
-            {
+            }, {
                 className: "tb_hits",
                 targets: [3]
-            },
-            {
+            }, {
                 className: "tb_date",
                 targets: [4]
             }
@@ -114,4 +125,28 @@ function fetch_data(mode = '', keyword = '') {
         serverSide: true
     });
     return table;
+}
+
+function search_form() {
+    return '<div class="row justify-content-around" id="search"><div class="col-md-2 col-3' +
+            '"><select class="custom-select" id="search_mode"><option value="1">제목+내용</opti' +
+            'on><option value="2">제목</option><option value="3">내용</option></select></div><d' +
+            'iv class="col-md-8 col-6"><input class="form-control" id="keyword"></input></d' +
+            'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_searc' +
+            'h" style="width: 100%">search</button></div></div>';
+} {/* <div class="row justify-content-around" id="search">
+                <div class="col-md-2 col-3">
+                    <select class="custom-select" id="search_mode">
+                        <option value="1">제목+내용</option>
+                        <option value="2">제목</option>
+                        <option value="3">내용</option>
+                    </select>
+                </div>
+                <div class="col-md-8 col-6">
+                    <input class="form-control" id="keyword"></input>
+                </div>
+                <div class="col-md-2 col-2">
+                    <button class="btn btn-secondary" id="btn_search" style="width: 100%">search</button>
+                </div>
+            </div> */
 }

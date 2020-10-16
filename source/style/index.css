@@ -12,7 +12,7 @@ table.dataTable.hover tbody tr:hover {
     background-color: #f6f6f6;
 }
 
-.top {
+.top, #search {
     width: 100%;
     margin: 0;
 }
@@ -36,10 +36,22 @@ tbody .tb_title {
     width: 100%;
 }
 
+.row {
+    margin: 5px 0 5px 0;
+}
+
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px) {
+    .container-xl {
+        padding: 0;
+    }
+
     #search > * {
         padding: 0;
+    }
+
+    #search_mode {
+        font-size: 0.8rem;
     }
 
     .list {
@@ -50,7 +62,7 @@ tbody .tb_title {
         padding: 0 5px 0 5px;
     }
 
-    thead {
+    #tb {
         font-size: 0.9rem;
     }
 

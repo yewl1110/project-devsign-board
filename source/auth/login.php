@@ -15,36 +15,43 @@ if(isset($_SESSION["id"])){
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
-    <link href="../style/login.css" rel="stylesheet" type="text/css">
-    <style>
-        body{
-            background-color:#FAFAFA;
-        }
-        .container-md {
-            padding: 100px 0 100px 0;
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <div class="container-md">
-            <div class="row justify-content-center">
-                <div class="col-5" id="container-header">
-                    <h1>로그인</h1>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
+        <link href="../style/login.css" rel="stylesheet" type="text/css">
+        <link href="../style/theme.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <main>
+            <div id="login-form">
+                <div style="text-align: center">
+                    <label>
+                        <h3>
+                            <a href="#">Devsign-board</a>
+                            로그인</h3>
+                    </label>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-4" id="login">
+                <div id="login">
                     <form action="signin.php" method="POST">
                         <div class="form-group">
                             <div class="form-row">
-                                <input type="text" class="form-control" name="id" placeholder="ID" required>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="id"
+                                    placeholder="ID"
+                                    required="required">
                             </div>
                             <div class="form-row">
-                                <input type="password" class="form-control" name="passwd" placeholder="Password" required>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    name="passwd"
+                                    placeholder="Password"
+                                    required="required">
                             </div>
                         </div>
                         <div class="form-row">
@@ -52,7 +59,11 @@ if(isset($_SESSION["id"])){
                         </div>
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="auto_login" name="auto_login">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="auto_login"
+                                    name="auto_login">
                                 <label class="form-check-label" for="auto_login">자동로그인</label>
                             </div>
                         </div>
@@ -67,11 +78,14 @@ if(isset($_SESSION["id"])){
                     </form>
                 </div>
             </div>
-        </div>
-        
-    </main>
-    <footer></footer>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-</body>
+
+        </main>
+        <footer></footer>
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    </body>
 </html>

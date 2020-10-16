@@ -1,43 +1,40 @@
-<?php 
+<?php
 require_once('../declared.php');
 require_once("../auth.class.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(isset($_COOKIE["auto_login"])){
+if (isset($_COOKIE["auto_login"])) {
     Auth::check_auto_login();
 }
-if(!isset($_SESSION["id"])){
-    header("Location:".getRootURL()."index.php?message=NO_AUTH");
+if (!isset($_SESSION["id"])) {
+    header("Location:" . getRootURL() . "index.php?message=NO_AUTH");
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link href="../style/writing.css" rel="stylesheet" type="text/css">
-    <style>
-        body{
-            background-color:#FAFAFA;
-        }
-        .container {
-            padding: 50px 0 50px 0;
-        }
-    </style>
+    <link href="../style/theme.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <header>
-        <?php write_header();?>
+        <?php write_header(); ?>
     </header>
     <main>
-        <div class="container">
+        <div class="container-xl">
             <div class="row justify-content-around">
                 <div class="col-12">
                     <form action="insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
                         <div class="form-row">
                             <div class="col-12">
-                                <input class="form-control" type="text" id="subject" name="subject" required/>
+                                <input class="form-control" type="text" id="subject" name="subject" required />
                             </div>
                         </div>
                         <div class="form-row">
@@ -68,7 +65,7 @@ if(!isset($_SESSION["id"])){
                                     <p><label for="files">Choose a file or drag it here.</label></p>
                                     <input type="file" id="files" name="files" multiple="multiple">
                                     <div id="message"><label></label></div>
-                                    <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png"/></span>
+                                    <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png" /></span>
                                     <div id="file_info">
                                         <table class="table">
                                             <thead>
@@ -101,4 +98,5 @@ if(!isset($_SESSION["id"])){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/writing.js"></script>
 </body>
+
 </html>

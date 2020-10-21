@@ -93,7 +93,7 @@ function fetch_data(mode = '', keyword = '') {
                         .location
                         .replace("./writing.php");
                 },
-                className: "btn btn-light btn-sm",
+                className: "btn btn-outline-secondary",
                 text: '글쓰기',
                 init: function (api, node, config) {
                     $(node).removeClass('dt-button')
@@ -127,6 +127,7 @@ function fetch_data(mode = '', keyword = '') {
     return table;
 }
 
+// 검색 form 출력
 function search_form() {
     return '<div class="row justify-content-around" id="search"><div class="col-md-2 col-3' +
             '"><select class="custom-select" id="search_mode"><option value="1">제목+내용</opti' +
@@ -134,19 +135,17 @@ function search_form() {
             'iv class="col-md-8 col-6"><input class="form-control" id="keyword"></input></d' +
             'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_searc' +
             'h" style="width: 100%">search</button></div></div>';
-} {/* <div class="row justify-content-around" id="search">
-                <div class="col-md-2 col-3">
-                    <select class="custom-select" id="search_mode">
-                        <option value="1">제목+내용</option>
-                        <option value="2">제목</option>
-                        <option value="3">내용</option>
-                    </select>
-                </div>
-                <div class="col-md-8 col-6">
-                    <input class="form-control" id="keyword"></input>
-                </div>
-                <div class="col-md-2 col-2">
-                    <button class="btn btn-secondary" id="btn_search" style="width: 100%">search</button>
-                </div>
-            </div> */
-}
+} 
+/*
+<div class="row justify-content-around" id="search">
+    <div class="col-md-2 col-3>
+        <select class="custom-select" id="search_mode">
+            <option value="1">제목+내용</opti on>
+            <option value="2">제목</option>
+            <option value="3">내용</option>
+        </select></div>
+    <div class="col-md-8 col-6"><input class="form-control" id="keyword"></input></div>
+    <div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_searc
+    h" style="width: 100%">search</button></div>
+</div>
+*/

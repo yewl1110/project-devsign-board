@@ -1,76 +1,102 @@
-#subject{
-    width:100%;
-    margin: 10px 0px 10px 0px;
-}
-form textarea{ display: none;}
-
-#styles{
-    width:100%;
-    margin: 0px 0px 10px 0px;
+.form-wrapper {
+    padding: 0 10px;
 }
 
-.BOLD{
+#subject {
+    width: 100%;
+    margin: 10px 0;
+}
+form textarea {
+    display: none;
+}
+
+#styles {
+    width: 100%;
+    margin: 0 0 10px;
+}
+
+.BOLD {
     font-weight: bold;
 }
 
-.ITALIC{
+.ITALIC {
     font-style: italic;
 }
 
-.UNDERBAR{
+.UNDERBAR {
     text-decoration: underline;
 }
 
-.BAR{
+.BAR {
     text-decoration: line-through;
 }
 
-main{
-    min-width: 1200px;
-}
-
-#contents{
-    width:100%;
-    height:500px;
-    border:1px solid black;
+#contents {
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
     background-color: white;
     overflow-x: initial;
     overflow-y: auto;
 }
 
-#drop-area{
+.file_upload {
+    display: flex;
     border: 2px dashed #ccc;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 100%;
-    height: 300px;
-    font-family: sans-serif;
-    margin: 30px auto;
-    padding: 20px;
+    height: 150px;
+    margin: 15px auto;
+    padding: auto;
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-family: sans-serif;
 }
 
-#drop-area label{
-    font-size: 20px;
+.file_upload label {
+    font-size: 25px;
     height: 100%;
     width: 100%;
 }
+/* 
+#drop-area {
+    display: flex;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    width: 100%;
+    height: 150px;
+    margin: 15px auto;
+    padding: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+} */
 
 #drop-area.highlight {
     border-color: purple;
 }
 
-#upload_cancel{
-    justify-content: center;
-    align-items: center;
+#upload_cancel {
+    text-align: center;
 }
 
-#buttons{
-    margin-top: 0px;
+#message {
+    font-size: 20px;
+    text-align: center;
 }
 
-#buttons input{
+#buttons {
+    margin: 10px 0;
+}
+
+#buttons input {
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 0 5px;
+    }
+}

@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
     
     function writeAttachFile(row){
-        var url = "http://hotcat.ddns.net:40080/contents/download.php?download="+row['file_name_save'];
+        var url = "http://hotcat.ddns.net:40080/contents/download.php?download="+row['file_id'];
         return '<span><a href="'+url+'">'+row['file_name_origin']+'</a></span>';
     }
     

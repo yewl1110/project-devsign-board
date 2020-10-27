@@ -56,4 +56,19 @@ function write_header(){
     echo '</ul>
     </nav>';
 }
+
+function write_sidebar(){
+    echo '
+    <nav class="col-lg-2 d-none d-lg-block sidebar border-right" id="side">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="member_info.php">정보변경</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="leave.php">회원탈퇴</a>
+            </li>
+        </ul>
+    </nav>
+    ';
+}
 ?>

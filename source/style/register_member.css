@@ -1,18 +1,52 @@
-body{
-    background-color:#FAFAFA;
+main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-.container {
-    padding: 100px 0 100px 0;
+
+h3 {
+    /* display: inline; */
 }
-#formbox{
+
+a {
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration-style: none;
+    text-decoration-line: none;
+}
+
+#join-form {
+    width: 400px;
+    min-width: 400px;
+    margin: auto;
+}
+
+#join-form label{
+    display: block;
+}
+
+
+#join .form-group {
+    margin: 20px 0;
+}
+
+/* #formbox{
     padding-top: 50px;
 }
 form{
     min-width: 350px;
-}
+} */
 button{
     width:100%;
 }
+
+#check_id, #check_email {
+    height: 100%;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
 .valid{
     border-color: #28a745;
 }

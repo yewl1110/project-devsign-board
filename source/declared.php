@@ -44,22 +44,35 @@ function write_header(){
     </div>';*/
     echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" href="'.$home.'">Devsign-board</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
     <a class="nav-link" href="'.$home.'index.php">Home <span class="sr-only">(current)</span></a>
     </li>
     </ul>
-    </div>
-    <ul class="navbar-nav">';
+    <ul class="navbar-nav" id="small-menu">';
     write_header_manu();
-    echo '</ul>
-    </nav>';
+    echo '</ul></div></nav>';
+}
+
+function write_sidebar_button(){
+    echo '
+    <nav class="navbar d-lg-none navbar-light bg-transparent" id="sidebar_button">
+        <button class="navbar-toggler d-lg-none collapsed" type="button"
+            data-toggle="collapse" data-target="#side" aria-controls="side" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    ';
 }
 
 function write_sidebar(){
     echo '
-    <nav class="col-lg-2 d-none d-lg-block sidebar border-right" id="side">
+    <nav class="col-lg-2 d-lg-block sidebar collapse" id="side">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="member_info.php">정보변경</a>
@@ -71,4 +84,3 @@ function write_sidebar(){
     </nav>
     ';
 }
-?>

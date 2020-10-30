@@ -22,6 +22,8 @@ if (!isset($_SESSION["id"])) {
     <header>
         <!-- 상단 네비게이션 바 -->
         <?php write_header(); ?>
+        <!-- 사이드 네비게이션 바 버튼 -->
+        <?php write_sidebar_button(); ?>
     </header>
     <div class="container-fluid">
         <div class="row">
@@ -90,6 +92,17 @@ if (!isset($_SESSION["id"])) {
         $("#nickname").val(nickname);
         var list = $('#side ul').children();
         $(list[0]).addClass('active');
+
+        $('#sidebar_button button').click(function() {
+            // 메뉴 접혀있을 때
+            if ($('#sidebar_button button').hasClass('collapsed')) {
+                // 메뉴 펼쳐질 때
+                $('#sidebar_button').addClass('sidebar-m').addClass('navbar-dark').removeClass('navbar-light');
+            } else {
+                // 색 제거
+                $('#sidebar_button').removeClass('sidebar-m').removeClass('navbar-dark').addClass('navbar-light');
+            }
+        });
     </script>
 </body>
 

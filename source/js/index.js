@@ -20,20 +20,7 @@ $(document).ready(function () {
     history.pushState('', '.');
     var table = fetch_data();
     // $(".top").css("display", "inline-block") .css("width", "100%"); $(".top
-    // .dt-buttons").css("float", "right");
-
-    $('.top')
-        .addClass('row')
-        .addClass('justify-content-between');
-
-    $('#tb')
-        .addClass('col-12')
-        .css('width', '100%');
-
-    // 테이블 생성 후 search form 넣기
-    $('#tb_wrapper .top').after(search_form());
-
-    // 목록에서 게시글 행 누를 때
+    // .dt-buttons").css("float", "right"); 목록에서 게시글 행 누를 때
     $("#tb tbody").on('click', 'tr', function () {
         var data = table
             .row(this)
@@ -44,14 +31,6 @@ $(document).ready(function () {
             .location
             .replace("view.php?board_id=" + board_id);
     });
-
-    // 검색
-    $("#btn_search").on('click', function () {
-        var val = $("#search_mode").val();
-        var keyword = $("#keyword").val();
-        table.destroy();
-        table = fetch_data(val, keyword);
-    })
 });
 
 function getNum(value) {
@@ -83,7 +62,27 @@ function fetch_data(mode = '', keyword = '') {
             type: "POST",
             data: {
                 mode: mode,
-                keyword: keyword
+                keyword: keyword,
+                success: function () {
+                    // 테이블 생성 후 search form 넣기
+                    $('#tb_wrapper .top').after(search_form());
+
+                    $('.top')
+                        .addClass('row')
+                        .addClass('justify-content-between');
+
+                    $('#tb')
+                        .addClass('col-12')
+                        .css('width', '100%');
+
+                    // 검색
+                    $("#btn_search").on('click', function () {
+                        var val = $("#search_mode").val();
+                        var keyword = $("#keyword").val();
+                        table.destroy();
+                        table = fetch_data(val, keyword);
+                    });
+                }
             }
         },
         buttons: [
@@ -133,9 +132,9 @@ function search_form() {
             '"><select class="custom-select" id="search_mode"><option value="1">제목+내용</opti' +
             'on><option value="2">제목</option><option value="3">내용</option></select></div><d' +
             'iv class="col-md-8 col-6"><input class="form-control" id="keyword"></input></d' +
-            'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_searc' +
-            'h" style="width: 100%">search</button></div></div>';
-} 
+            'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="bt' +
+            'n_search" style="width: 100%">search</button></div></div>';
+}
 /*
 <div class="row justify-content-around" id="search">
     <div class="col-md-2 col-3>

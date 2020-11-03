@@ -81,6 +81,9 @@ write_table();
     <script type="text/javascript">
         $(document).ready(function() {
             document.title = "Devsign-board";
+
+            var list = $('#header-menu').children();
+            $(list[0]).addClass('active');
         });
     </script>
 </body>

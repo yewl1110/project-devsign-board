@@ -58,7 +58,7 @@ if (!isset($_SESSION["id"])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        var list = $('#side ul').children();
+        var list = $('#side-menu').children();
         $(list[1]).addClass('active');
 
         $('#sidebar_button button').click(function() {

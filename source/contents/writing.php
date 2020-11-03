@@ -9,7 +9,7 @@ if (isset($_COOKIE["auto_login"])) {
     Auth::check_auto_login();
 }
 if (!isset($_SESSION["id"])) {
-    header("Location:" . getRootURL() . "index.php?message=NO_AUTH");
+    header("Location: index.php?message=NO_AUTH");
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,8 @@ if (!isset($_SESSION["id"])) {
                             <input class="form-control" type="text" id="subject" name="subject" required />
                         </div>
                     </div>
-                    <div class="form-row">
+                    <!-- 기존 에디터 -->
+                    <!-- <div class="form-row">
                         <div class="col-12">
                             <div class="btn-toolbar justify-content-between form-group" id="styles" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group" role="group" aria-label="First group">
@@ -56,6 +57,13 @@ if (!isset($_SESSION["id"])) {
                         <div class="col-12">
                             <textarea id="contents_submit" name="contents"></textarea>
                             <div class="form-control" contenteditable="true" id="contents" required></div>
+                        </div>
+                    </div> -->
+
+                    <!-- TinyMCE Editor -->
+                    <div class="form-row">
+                        <div class="col-12">
+                            <textarea id="contents_submit" name="contents"></textarea>
                         </div>
                     </div>
                     <!--파일 첨부 부분-->
@@ -78,13 +86,13 @@ if (!isset($_SESSION["id"])) {
                         <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png" /></span>
                         </div> -->
                         <div class="col-12" id="file_info">
-                            <table class="table">
-                                <thead>
+                            <table class="table border-bottom">
+                                <!-- <thead>
                                     <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                </thead>
+                                </thead> -->
                                 <tbody></tbody>
                             </table>
                         </div>
@@ -108,7 +116,12 @@ if (!isset($_SESSION["id"])) {
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/vu4diyhkeaq9ze6x24n1gder340bczkpzcz51zl1mprozijj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript" src="../js/writing.js"></script>
+    <script type="text/javascript">
+        var list = $('#header-menu').children();
+        $(list[0]).addClass('active');
+    </script>
 </body>
 
 </html>

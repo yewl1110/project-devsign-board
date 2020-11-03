@@ -90,7 +90,8 @@ if (!isset($_SESSION["id"])) {
         $("#email").val(email);
         $("#name").val(name);
         $("#nickname").val(nickname);
-        var list = $('#side ul').children();
+        
+        var list = $('#side-menu').children();
         $(list[0]).addClass('active');
 
         $('#sidebar_button button').click(function() {

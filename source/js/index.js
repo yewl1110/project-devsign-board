@@ -65,7 +65,10 @@ function fetch_data(mode = '', keyword = '') {
                 keyword: keyword,
                 success: function () {
                     // 테이블 생성 후 search form 넣기
-                    $('#tb_wrapper .top').after(search_form());
+                    // search_form이 없을때만 생성
+                    if($('#search').length == 0){
+                        $('#tb_wrapper .top').after(search_form());
+                    }
 
                     $('.top')
                         .addClass('row')
@@ -133,7 +136,7 @@ function search_form() {
             'on><option value="2">제목</option><option value="3">내용</option></select></div><d' +
             'iv class="col-md-8 col-6"><input class="form-control" id="keyword"></input></d' +
             'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="bt' +
-            'n_search" style="width: 100%">search</button></div></div>';
+            'n_search" style="width: 100%; height: 100%">search</button></div></div>';
 }
 /*
 <div class="row justify-content-around" id="search">

@@ -7,22 +7,26 @@ $(document).ready(function(){
         dataType: "json",
         async: false,
         success:function(result){
+            // 존재하지 않는 board_id일 때
             if(result == "0"){
                 window.location.href = "index.php";
             }
+
+            // 게시글과 관련된 정보 가져옴
             data = result["board"][0];
-            contents = result["table_attach"];
-            console.log(result);
             $("#subject").html(data["subject"]);
             $("#user_id").html(data["user_id"]);
             $(".post-meta").append('<span>조회수: '+data["hits"]+'</span>')
             .append('<span>'+data["reg_date"]+'</span>');
             
             console.log(htmlspecialchars_decode(data["contents"]));
+            // contents 내용에서 encode했던 html 태그를 decode 가져온 후 decode 함
             $(".post-contents pre").append(htmlspecialchars_decode(data["contents"]));
             
-            if(contents.length > 0){
-                contents.forEach(row => {
+            // 첨부파일이 있을 때
+            files = result["table_attach"];
+            if(files.length > 0){
+                files.forEach(row => {
                     $(".files").append(writeAttachFile(row));
                 });
                 $(".files").css("display", "block")

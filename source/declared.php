@@ -49,12 +49,15 @@ function write_header(){
     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-    <a class="nav-link" href="'.$home.'index.php">Home <span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav mr-auto" id="header-menu">
+    <li class="nav-item">
+    <a class="nav-link" href="'.$home.'index.php">Home<span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="'.$home.'index.php">Chatting<span class="sr-only">(current)</span></a>
     </li>
     </ul>
-    <ul class="navbar-nav" id="small-menu">';
+    <ul class="navbar-nav" id="login-menu">';
     write_header_manu();
     echo '</ul></div></nav>';
 }
@@ -73,7 +76,7 @@ function write_sidebar_button(){
 function write_sidebar(){
     echo '
     <nav class="col-lg-2 d-lg-block sidebar collapse" id="side">
-        <ul class="nav flex-column">
+        <ul class="nav flex-column" id="side-menu">
             <li class="nav-item">
                 <a class="nav-link" href="member_info.php">정보변경</a>
             </li>

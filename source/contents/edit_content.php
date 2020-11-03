@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../declared.php');
 require_once("../auth.class.php");
 
@@ -8,12 +8,13 @@ if (session_status() == PHP_SESSION_NONE) {
 if (isset($_COOKIE["auto_login"])) {
     Auth::check_auto_login();
 }
-if(!isset($_SESSION["id"])){
-    header("Location:".getRootURL()."/index.php?message=NO_AUTH");
+if (!isset($_SESSION["id"])) {
+    header("Location:" . getRootURL() . "/index.php?message=NO_AUTH");
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
@@ -21,21 +22,24 @@ if(!isset($_SESSION["id"])){
     <link href="../style/writing.css" rel="stylesheet" type="text/css">
     <link href="../style/theme.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <header>
-        <?php write_header();?>
+        <?php write_header(); ?>
     </header>
     <main>
-    <div class="container-xl view">
+        <div class="container-xl view">
             <div class="form-wrapper">
                 <form action="insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
+                    <input id="board_id" name="board_id"/>
                     <!--에디터 부분-->
                     <div class="form-row">
                         <div class="col-12">
                             <input class="form-control" type="text" id="subject" name="subject" required />
                         </div>
                     </div>
-                    <div class="form-row">
+                    <!-- 기존 에디터 -->
+                    <!-- <div class="form-row">
                         <div class="col-12">
                             <div class="btn-toolbar justify-content-between form-group" id="styles" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group" role="group" aria-label="First group">
@@ -55,6 +59,13 @@ if(!isset($_SESSION["id"])){
                             <input id="board_id" name="board_id"/>
                             <textarea id="contents_submit" name="contents"></textarea>
                             <div class="form-control" contenteditable="true" id="contents" required></div>
+                        </div>
+                    </div> -->
+
+                    <!-- TinyMCE Editor -->
+                    <div class="form-row">
+                        <div class="col-12">
+                            <textarea id="contents_submit" name="contents"></textarea>
                         </div>
                     </div>
                     <!--파일 첨부 부분-->
@@ -77,13 +88,13 @@ if(!isset($_SESSION["id"])){
                         <span id="upload_cancel"><img id="upload_cancel" src="https://img.icons8.com/material/48/000000/cancel--v1.png" /></span>
                         </div> -->
                         <div class="col-12" id="file_info">
-                            <table class="table">
-                                <thead>
+                            <table class="table border-bottom">
+                                <!-- <thead>
                                     <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                </thead>
+                                </thead> -->
                                 <tbody></tbody>
                             </table>
                         </div>
@@ -107,6 +118,15 @@ if(!isset($_SESSION["id"])){
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/vu4diyhkeaq9ze6x24n1gder340bczkpzcz51zl1mprozijj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript" src="../js/writing.js"></script>
     <script type="text/javascript" src="../js/edit.js"></script>
+    <script type="text/javascript">
+        var list = $('#header-menu').children();
+        $(list[0]).addClass('active');
+
+        $(document).ready(function() {
+        });
+    </script>
+
 </html>

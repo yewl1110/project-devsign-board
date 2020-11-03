@@ -1,28 +1,26 @@
 $(document).ready(function(){
+    // 에디터 초기화
+    tinymce.init({
+        selector: '#contents_submit',
+        height: 500,
+        menubar: false,
+        toolbar_mode: 'wrap',
+        toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        setup: function(editor) {
+            editor.on('change', function() {
+                editor.save();
+            });
+        }
+    });
+
     // input 태그를 통해 파일 선택 창 열어 파일 첨부할 때
     $('#files, #files_sm').change(function(e){
         var files = e.target.files;
-        console.log(files);
-
-        if (files.length > 10) {
-            alert("파일 개수가 초과되었습니다.(10개 제한)");
-            $(this).val("");
-            return;
-        }else{
-            for(var i = 0; i < files.length; i++){
-                if(check(files[i])){
-                    fileList.push(files[i]);
-                }        
-            }
-            $("#file_info > table").empty();
-            if(fileList.length > 0){
-                drawUploaded(fileList.length);
-                if(typeof(uploadedFiles) != "undefined"){
-                    drawUploadedFile(uploadedFiles);
-                }
-                drawFile(fileList);
-            }
-        }
+        file_count(files);
     });
 
     // window.innerWidth 값 구한 후
@@ -51,7 +49,6 @@ $(document).ready(function(){
     //     e.preventDefault();
     //     $('#files_sm').click();
     // });
-
     $('#btn_submit').click(submitContents);
 
     $("#drop-area")
@@ -81,11 +78,11 @@ var fileList = [];
 
 // 게시글 form submit
 function submitContents(){
-    var contents = $('#contents').html();
-    if(contents == "") return false;
+    // 글 내용 없으면 업로드 안됨
+    if($('#contents_submit').val() == "") return false;
+
     var params = new URLSearchParams(window.location.search);
     $('#board_id').val(params.get("board_id"));
-    $('#contents_submit').text(contents);
 
     var formData = new FormData($('#submitForm')[0]);
     if(typeof(fileList) != "undefined"){
@@ -127,9 +124,12 @@ function unhighlight(e){
 // 파일 드롭 이벤트
 function handleDrop(e){
     var files = e.originalEvent.dataTransfer.files;
+    file_count(files);
+}
 
+function file_count(files){
     var count = files.length + fileList.length;
-
+    
     // 이미 업로드 되어있는 파일 있을 때
     if(typeof(uploadedFiles) != "undefined"){
         count += Object.keys(uploadedFiles).length;
@@ -145,10 +145,10 @@ function handleDrop(e){
         }        
     }
     $("#file_info > table").empty();
-
+    
     // 첨부파일 목록 테이블 다시 그림
-    if(fileList.length > 0){
-        drawUploaded(fileList.length);
+    if(count > 0){
+        drawUploaded(count);
         if(typeof(uploadedFiles) != "undefined"){
             drawUploadedFile(uploadedFiles);
         }
@@ -177,14 +177,12 @@ function check(file){
 
 // 첨부된 파일 갯수 표시
 function drawUploaded(count){
-    //$("#drop-area").children().first().css("display", "none");
     $("#message").html("<label>" + count + " files Uploaded.</label>").css("display", "block");
     $("#upload_cancel").css("display", "block");
 }
 
 // 파일 업로드 전 기본 메시지 출력
 function drawGuide(){
-    //$("#drop-area").children().first().css("display", "block");
     $("#message").html("").css("display", "none");
     $("#upload_cancel").css("display", "none");
 }

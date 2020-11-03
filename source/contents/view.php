@@ -65,7 +65,10 @@ if (isset($_SESSION["id"])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/view.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function() {    
+            var list = $('#header-menu').children();
+            $(list[0]).addClass('active');
+
             var id = '<?php echo $id; ?>';
             if (id == '' || id != $("#user_id").text()) {
                 $("#edit").remove();

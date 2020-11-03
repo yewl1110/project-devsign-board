@@ -17,7 +17,7 @@ $(document).ready(function () {
                 uploadedFiles[file["file_id"]] = file["file_name_origin"];
             });
             $("#subject").val(data["subject"]);
-            $("#contents").html(htmlspecialchars_decode(data["contents"]));
+            $('#contents_submit').val(htmlspecialchars_decode(data["contents"]));
 
             // 게시글에 첨부된 파일 있을 때
             var keys = Object.keys(uploadedFiles);
@@ -27,8 +27,7 @@ $(document).ready(function () {
                 keys.forEach(key => {
                     var file_record = '<tr><td style="display:none;"><label>-1</label></td><td style="display:none;">' +
                             '<label>' + key + '</label></td><td style="width: 90%;"><label>' +
-                            uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn bt' +
-                            'n-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)' +
+                            uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)' +
                             '"></td></tr>';
                     $("#file_info > table").append(file_record);
                 });
@@ -51,14 +50,12 @@ var uploadedFiles = [];
 
 function updateContents() {
     // 글 내용 없으면 업로드 안됨
-    var contents = $('#contents').html();
-    if (contents == "") 
-        return false;
+    if($('#contents_submit').val() == "") return false;
+
     var params = new URLSearchParams(window.location.search);
 
     // db 업데이트 위한 key 보냄
     $('#board_id').val(params.get("board_id"));
-    $('#contents_submit').text(contents);
 
     var formData = new FormData($('#submitForm')[0]);
     if (typeof(fileList) != "undefined") {
@@ -69,19 +66,17 @@ function updateContents() {
     }
 
     $.ajax({
-        url: "update_contents.php",
+        url: "../contents/update_contents.php",
         data: formData,
         type: 'POST',
         processData: false,
         contentType: false,
         cache: false,
         success: function () {
-            window
-                .history
-                .back();
+            window.history.back();
         },
         error: function () {
-            alert("error");
+            alert("error");s
         }
     });
 };

@@ -10,6 +10,12 @@ if(isset($_GET["board_id"])){
     $rows = DB::query2("SELECT user_id, user_name, subject, contents, hits, reg_date FROM board WHERE board_id = :id", array(":id" => $_GET["board_id"]));
     $result["board"] = $rows;
 
+    // 유효하지 않은 board_id일 때
+    if(count($result["board"]) == 0){
+        echo "0";
+        exit();
+    }
+
     // 로그인 안한 상태이거나 본인 글 아닐때만 조회수 업데이트
     $id = $rows["0"]["user_id"];
     if(!isset($_SESSION["id"]) || $_SESSION["id"] != $id){

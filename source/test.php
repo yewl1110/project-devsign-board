@@ -49,6 +49,7 @@
 </head>
 
 <body>
+    <div id="log"></div>
     <div class="container">
         <div class="row" id="col">
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 ">1</div>
@@ -79,7 +80,8 @@
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 ">6</div>
         </div>
     </div>
-    <div id="log"></div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var viewport = '';
         viewport += 'document.documentElement.clientWidth 문서의 viewport크기 : ';
@@ -92,11 +94,23 @@
         viewport += document.documentElement.offsetWidth;
         viewport += '<br>screen.width 스크린 크기 : ';
         viewport += screen.width;
-
         document.getElementById('log').innerHTML = viewport;
+
+        window.onresize = function() {
+            var viewport = '';
+            viewport += 'document.documentElement.clientWidth 문서의 viewport크기 : ';
+            viewport += document.documentElement.clientWidth;
+            viewport += '<br>window.innerWidth 브라우저 viewport의 스크롤 포함 크기 : ';
+            viewport += window.innerWidth;
+            viewport += '<br>window.outerWidth 브라우저 창 크기 : ';
+            viewport += window.outerWidth;
+            viewport += '<br>document.documentElement.offsetWidth 문서의 크기 : ';
+            viewport += document.documentElement.offsetWidth;
+            viewport += '<br>screen.width 스크린 크기 : ';
+            viewport += screen.width;
+            document.getElementById('log').innerHTML = viewport;
+        }
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

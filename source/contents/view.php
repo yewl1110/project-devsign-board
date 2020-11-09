@@ -68,18 +68,17 @@ if (isset($_SESSION["id"])) {
         $(document).ready(function() {    
             var list = $('#header-menu').children();
             $(list[0]).addClass('active');
+            var params = new URLSearchParams(window.location.search);
 
             var id = '<?php echo $id; ?>';
             if (id == '' || id != $("#user_id").text()) {
                 $("#edit").remove();
             }
             document.title = $('#subject').html();
-
             var disqus_shortname = $('#subject').html();
-
             var disqus_config = function() {
                 this.page.url = window.location.href;
-                this.page.identifier = '';
+                this.page.identifier = params.get("board_id");
                 this.page.title = disqus_shortname;
             };
             (function() { // DON'T EDIT BELOW THIS LINE

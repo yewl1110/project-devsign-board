@@ -76,14 +76,22 @@ write_table();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
-    <script id="dsq-count-scr" src="//hotcat-1.disqus.com/count.js" async></script>
     <script type="text/javascript" src="../js/index.js"></script>
+    <script id="dsq-count-scr" src="//hotcat-1.disqus.com/count.js" async></script>
     <script type="text/javascript">
         $(document).ready(function() {
             document.title = "Devsign-board";
 
             var list = $('#header-menu').children();
             $(list[0]).addClass('active');
+            $('#tb').on('draw.dt', function() {
+                console.log('sdfsd');
+                // $.getScript("http://hotcat-1.disqus.com/count.js");
+                // $.getScript("http://hotcat-1.disqus.com/count.js");
+                    // DISQUSWIDGETS.getCount({
+                    //     reset: true
+                    // });
+            });
         });
     </script>
 </body>

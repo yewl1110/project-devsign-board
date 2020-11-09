@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($rows as $row) {
         $sub_array = array();
         $sub_array[] = '<label>' . $row['board_id'] . '</label>';
-        $sub_array[] = '<label>' . $row['subject'] . ' <a href="contents/view.php?board_id=' . $row['board_id'] . '#disqus_thread"></a></label>';
+        $sub_array[] = '<label>' . $row['subject'] . ' <a href="view.php?board_id=' . $row['board_id'] . '#disqus_thread"><span class="disqus-comment-count" data-disqus-identifier="' . $row['board_id'] . '">.</span></a></label>';
         $sub_array[] = '<label>' . $row['user_name'] . '</label>';
         $sub_array[] = '<label>' . $row['hits'] . '</label>';
         $sub_array[] = '<label>' . $row['reg_date'] . '</label>';

@@ -19,8 +19,19 @@ $(document).ready(function () {
     });*/
     history.pushState('', '.');
     var table = fetch_data();
-    // $(".top").css("display", "inline-block") .css("width", "100%"); $(".top
-    // .dt-buttons").css("float", "right"); 목록에서 게시글 행 누를 때
+    // table.on('page.dt', function() {
+    //     $.getScript("http://hotcat-1.disqus.com/count.js");
+    //     DISQUSWIDGETS.getCount({reset: true});
+    // });
+    // table.on('draw.dt', function() {
+    //     console.log('sdfsd');
+    //     //$.getScript("http://hotcat-1.disqus.com/count.js");
+    //     // $.getScript("http://hotcat-1.disqus.com/count.js");
+    //     if(typeof(DISQUSWIDGETS) != "undefined"){
+    //         DISQUSWIDGETS.getCount({reset: true});
+    //     }
+    // });
+
     $("#tb tbody").on('click', 'tr', function () {
         var data = table
             .row(this)
@@ -58,7 +69,7 @@ function getCookie(name) {
 function fetch_data(mode = '', keyword = '') {
     var table = $("#tb").DataTable({
         ajax: {
-            url: "../script/fetch.php",
+            url: "../contents/fetch.php",
             type: "POST",
             data: {
                 mode: mode,

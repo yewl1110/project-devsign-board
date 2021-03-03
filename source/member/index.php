@@ -1,3 +1,3 @@
 <?php
-header('Location: ../contents/');
+header('Location: /contents/');
 ?>

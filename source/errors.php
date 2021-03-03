@@ -11,7 +11,14 @@ class ErrorManager {
     );
 
     public static function write_log($message){
-        $logPath = $_SERVER['DOCUMENT_ROOT'].'/../../log/error_log.txt';
+        if(is_array($message)){
+            $message = implode('/', $message);
+        }
+        $logPath = $_SERVER['DOCUMENT_ROOT'].'/log/error_log.txt';
+
+        if(!file_exists($logPath)) {
+            fopen($logPath, "w");
+        }
 
         $cur_time = date("Y-m-d h:i:s", mktime());
         $result = '['.$cur_time.']'.$message."\n";
@@ -27,6 +34,7 @@ class ErrorManager {
     public static function requestAlert($message){
         echo '<script type="text/javascript">
             alert("'.self::MESSAGES[$message].'");
+            window.location.href = "/";
         </script>';
     }
 }

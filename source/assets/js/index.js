@@ -1,36 +1,7 @@
 $(document).ready(function () {
-    /*var amt_contents = document.getElementById("amt_contents");
-    var value = getCookie("amt_contents");
-    if(value){
-        for(var j, i = 0; j = amt_contents.options[i]; i++){
-            if(value == j.value){
-                amt_contents.selectedIndex = i;
-                break;
-            }
-        }
-    }*/
-
-    /*document.getElementById("amt_contents").addEventListener('change', function(){
-        var value = document.getElementById("amt_contents").value;
-        var date = new Date();
-        date.setTime(date.getTime() + 24*60*60*1000);
-        document.cookie = "amt_contents=" + value + ";expires=" + date.toUTCString() + ";path=/";
-        location.reload();
-    });*/
+    
     history.pushState('', '.');
     var table = fetch_data();
-    // table.on('page.dt', function() {
-    //     $.getScript("http://hotcat-1.disqus.com/count.js");
-    //     DISQUSWIDGETS.getCount({reset: true});
-    // });
-    // table.on('draw.dt', function() {
-    //     console.log('sdfsd');
-    //     //$.getScript("http://hotcat-1.disqus.com/count.js");
-    //     // $.getScript("http://hotcat-1.disqus.com/count.js");
-    //     if(typeof(DISQUSWIDGETS) != "undefined"){
-    //         DISQUSWIDGETS.getCount({reset: true});
-    //     }
-    // });
 
     $("#tb tbody").on('click', 'tr', function () {
         var data = table
@@ -40,7 +11,7 @@ $(document).ready(function () {
         var board_id = data[0].replace(/(<([^>]+)>)/ig, '');
         window
             .location
-            .replace("view.php?board_id=" + board_id);
+            .replace("/contents/view.php?board_id=" + board_id);
     });
 });
 
@@ -69,7 +40,7 @@ function getCookie(name) {
 function fetch_data(mode = '', keyword = '') {
     var table = $("#tb").DataTable({
         ajax: {
-            url: "../contents/fetch.php",
+            url: "./fetch.php",
             type: "POST",
             data: {
                 mode: mode,
@@ -141,24 +112,18 @@ function fetch_data(mode = '', keyword = '') {
 }
 
 // 검색 form 출력
-function search_form() {
-    return '<div class="row justify-content-around" id="search"><div class="col-md-2 col-3' +
-            '"><select class="custom-select" id="search_mode"><option value="1">제목+내용</opti' +
-            'on><option value="2">제목</option><option value="3">내용</option></select></div><d' +
-            'iv class="col-md-8 col-6"><input class="form-control" id="keyword"></input></d' +
-            'iv><div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="bt' +
-            'n_search" style="width: 100%; height: 100%">search</button></div></div>';
+function search_form(){
+    return `
+    <div class="row justify-content-around" id="search">
+        <div class="col-md-2 col-3">
+            <select class="custom-select" id="search_mode">
+                <option value="1">제목+내용</option>
+                <option value="2">제목</option>
+                <option value="3">내용</option>
+            </select>
+        </div>
+        <div class="col-md-8 col-6"><input class="form-control" id="keyword"></input></div>
+        <div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_search" style="width: 100%">search</button></div>
+    </div>
+    `;
 }
-/*
-<div class="row justify-content-around" id="search">
-    <div class="col-md-2 col-3>
-        <select class="custom-select" id="search_mode">
-            <option value="1">제목+내용</opti on>
-            <option value="2">제목</option>
-            <option value="3">내용</option>
-        </select></div>
-    <div class="col-md-8 col-6"><input class="form-control" id="keyword"></input></div>
-    <div class="col-md-2 col-2"><button class="btn btn-sm btn-secondary" id="btn_searc
-    h" style="width: 100%">search</button></div>
-</div>
-*/

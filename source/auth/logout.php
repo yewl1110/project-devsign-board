@@ -1,10 +1,6 @@
 <?php
-require_once('../declared.php');
 require_once('../auth.class.php');
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+require_once('../declared.php');
 
 Auth::logout();
 

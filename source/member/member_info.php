@@ -1,9 +1,11 @@
 <?php
-require_once("../declared.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/declared.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/auth.class.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (!isset($_SESSION["id"])) {
+if (!Auth::isLogin()) {
     header("Location: index.php?message=NO_AUTH");
 }
 ?>
@@ -15,7 +17,7 @@ if (!isset($_SESSION["id"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="../style/theme.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
 </head>
 
 <body>
@@ -33,39 +35,39 @@ if (!isset($_SESSION["id"])) {
             <main class="col-lg-10 col-12">
                 <div class="row justify-content-md-center">
                     <div class="col-12 col-md-8 col-lg-6" id="form-box">
-                        <form action="update_member.php" id="account" method="post" name="account">
+                        <form action="member/update_member.php" id="account" method="post" name="account">
                             <div class="form-group">
                                 <h2>정보변경</h2>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-sub-title">
                                 <label>ID</label>
                                 <input type="text" class="form-control" id="id" name="id" readonly>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-sub-title">
                                 <label>Email</label>
                                 <input type="text" class="form-control" id="email" readonly>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-sub-title">
                                 <label>Password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-12 col-md-6">
+                                <div class="form-group col-12 col-md-6 form-sub-title">
                                     <label>New Password</label>
                                     <input type="password" class="form-control" id="new_password" name="new_password">
                                 </div>
-                                <div class="form-group col-12 col-md-6">
+                                <div class="form-group col-12 col-md-6 form-sub-title">
                                     <label>Confirm</label>
                                     <input type="password" class="form-control" id="confirm" placeholder="Re enter the new password.">
                                 </div>
                             </div>
                             <div class="alert alert-danger col-12" id="message_passwd" role="alert">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-sub-title">
                                 <label>Name</label>
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-sub-title">
                                 <label>Nickname</label>
                                 <input type="text" class="form-control" id="nickname" name="nickname">
                             </div>
@@ -80,7 +82,9 @@ if (!isset($_SESSION["id"])) {
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/member_info.js"></script>
+    <script src="https://kit.fontawesome.com/8426c7d90d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/assets/js/member_info.js"></script>
+    <script type="text/javascript" src="/assets/js/notification.js" async></script>
     <script type="text/javascript">
         var id = '<?php echo $_SESSION["id"]; ?>';
         var email = '<?php echo $_SESSION["email"]; ?>';

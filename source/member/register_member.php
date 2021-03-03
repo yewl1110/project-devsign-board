@@ -1,11 +1,17 @@
 <?php
-require_once("../declared.php");
-require_once("../db.class.php");
-require_once("../auth.class.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . '/declared.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/auth.class.php';
 
+@session_start();
 
 if (session_status() != PHP_SESSION_NONE) {
-    header("Location:" . $_SERVER["HTTP_REFERER"]);
+    if(isset($_SESSION['ID'])) {
+        if(isset($_SERVER["HTTP_REFERER"])){
+            header("Location:" . $_SERVER["HTTP_REFERER"]);
+            exit();
+        }
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ":email" => $_POST["email"],
                 ":name" => $_POST["id"],
                 ":nickname" => $_POST["id"],
-                ":email_key" => '0'
+                ":email_key" => ''
             )
         );
 
@@ -39,8 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/css/bootstrap.css">
-    <link rel="stylesheet" href="../style/register_member.css">
-    <link rel="stylesheet" href="../style/theme.css">
+    <base href="..">
+    <link rel="stylesheet" href="assets/css/register_member.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 
 <body>
@@ -56,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </label>
             </div>
             <div id="join">
-                <form class="" action="" method="POST">
+                <form action="member/register_member.php" method="POST">
                     <!-- ID -->
                     <div class="form-group">
                         <div class="form-row">
@@ -135,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script src="../js/register_member.js" type="text/javascript"></script>
+    <script src="assets/js/register_member.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -38,19 +38,9 @@ if (isset($_GET["email"]) && isset($_GET["email_key"])) {
                 ":email_key" => $_GET["email_key"]
             )
         );
-        echo '
-        <script>
-            if(!alert("인증되었습니다.")){
-                document.location = ' . getRootURL() . '
-            }
-        </script>';
-        return;
+        echo '<script> if(!alert("인증되었습니다.")){ document.location = "' . getRootURL() . '";} </script>';
+        exit();
     }
 }
 
-echo '
-<script>
-if(!alert("잘못된 링크입니다.")){
-    close();
-}
-</script>';
+echo '<script> if(!alert("잘못된 링크입니다.")){ document.location = "' . getRootURL() . '";} </script>';

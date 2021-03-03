@@ -33,7 +33,7 @@
     display: none;
     padding: 10px;
     overflow-x: hidden;
-    margin: 10px 0 10px 0;
+    margin: 10px 0;
 }
 .files * {
     display: none;
@@ -43,6 +43,60 @@
 }
 .files a:hover {
     color: white;
+}
+
+.comment-wrapper {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.comment-wrapper div[class^="col"] {
+    padding: 0 5px;
+}
+
+.comment-wrapper textarea {
+    overflow-y: hidden;
+}
+
+.comment .user-id {
+    font-weight: bold;
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 10px 5px;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+}
+
+.comment-time {
+    font-size: 0.9rem;
+}
+
+.comment-edit {
+    float: right;
+}
+
+.comment-edit a {
+    color: #999;
+    font-size: 0.9rem;
+    float: left;
+}
+
+.comment-edit a:hover {
+    text-decoration: underline;
+}
+
+.comment-contents textarea {
+    resize: none;
+    width: 100%;
+    background-color: inherit !important;
+}
+
+#comments {
+    margin: 10px 0;
+    padding: 0 10px;
 }
 
 /* Medium devices (tablets, 768px and up) */

@@ -1,7 +1,8 @@
 <?php
-require_once('../declared.php');
-require_once('../db.class.php');
-require_once('../mail.class.php');
+include_once $_SERVER['DOCUMENT_ROOT'] . '/session_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/declared.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mail.class.php';
 
 class Auth
 {
@@ -17,11 +18,10 @@ class Auth
         } else {
             // 인증 페이지로 이동시킴 POST로 ID도 같이 보내야함
 
-            $url = getRootURL() . "auth/verification_info.php";
             $data = array('id' => $account['id'], 'email' => $account['email']);
 
             header("Location: " . getRootURL() . "auth/verification_info.php?" . http_build_query($data));
-            return;
+            exit();
         }
     }
 
@@ -33,8 +33,13 @@ class Auth
         setcookie("token", null, -1, "/");
 
         // 세션 제거
-        $_SESSION = [];
+        // $_SESSION = [];
+        //session_unset();
         session_destroy(); // 서버 측 세션 종료
+    }
+
+    public static function isLogin(){
+        return isset($_SESSION["id"]);
     }
 
     // 자동 로그인인지 체크
@@ -125,10 +130,14 @@ class Auth
     {
         DB::connect();
         $row = DB::query2(
-            "SELECT email_key FROM member WHERE id = :id",
+            "SELECT activated FROM member WHERE id = :id",
             array(":id" => $account["id"])
         );
-        if ($row[0]["email_key"] == '') {
+        if ($row[0]["activated"] == '1') {
+            DB::query2(
+                "UPDATE member SET email_key='' WHERE id = :id",
+                array(":id" => $account["id"])
+            );
             return true;
         } else {
             return false;

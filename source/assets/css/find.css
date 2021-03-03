@@ -1,0 +1,33 @@
+main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    width: 350px;
+}
+
+.form-title label {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.form-sub-title {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+
+#message-passwd {
+    display: inline-block;
+}
+
+.submit {
+    text-align: right;
+}
+
+#message-passwd {
+    text-align: left;
+}

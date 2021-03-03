@@ -1,7 +1,13 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/declared.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/auth.class.php';
 
-if (session_status() != PHP_SESSION_NONE) {
-    header("Location:" . $_SERVER["HTTP_REFERER"]);
+if (Auth::isLogin()) {
+    if(isset($_SERVER["HTTP_REFERER"])) {
+        header("Location:" . $_SERVER["HTTP_REFERER"]);
+    } else {
+        header("Location:" . getRootURL());
+    }
 }
 ?>
 
@@ -10,20 +16,38 @@ if (session_status() != PHP_SESSION_NONE) {
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <style>
+        div[class^="col"] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <?php write_header(); ?>
+    </header>
     <main>
-        <h1>
-            메일을 확인해주세요</br>
-        </h1>
-        <h1>
-            home</br>
-        </h1>
-        <button onclick="sendMail()">다시 전송</button>
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <h4 style="display: inline;">
+                        인증메일을 확인해주세요
+                    </h4>
+                </div>
+            </div>
+            <dlv class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-secondary" onclick="sendMail()">다시 전송</button>
+                    </div>
+            </dlv>
+        </div>
     </main>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

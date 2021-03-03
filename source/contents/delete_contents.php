@@ -1,9 +1,9 @@
 <?php
-require_once("../db.class.php");
-require_once("../declared.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/db.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/declared.php";
 
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+    @session_start();
 }
 
 if(isset($_GET["board_id"]) && isset($_SESSION["id"])){
@@ -24,6 +24,11 @@ if(isset($_GET["board_id"]) && isset($_SESSION["id"])){
     array(
         ":board_id" => $_GET["board_id"],
         ":user_id" => $_SESSION["id"]
+    ));
+
+    DB::query2("DELETE FROM comment WHERE board_id = :board_id",
+    array(
+        ":board_id" => $_GET["board_id"]
     ));
     echo "1";
 }else{

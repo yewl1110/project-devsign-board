@@ -1,8 +1,8 @@
 <?php
-require_once("../declared.php");
-require_once("../errors.php");
-require_once("../auth.class.php");
-require_once("../contents/contents_list.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/declared.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/errors.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/auth.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/contents/contents_list.php";
 
 if (isset($_COOKIE["auto_login"])) {
     Auth::check_auto_login();
@@ -23,8 +23,8 @@ write_table();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="../style/index.css">
-    <link rel="stylesheet" href="../style/theme.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
 </head>
 
 <body>
@@ -33,21 +33,6 @@ write_table();
     </header>
     <main>
         <div class="container-xl">
-            <!-- <div class="row justify-content-around" id="search">
-                <div class="col-md-2 col-3">
-                    <select class="custom-select" id="search_mode">
-                        <option value="1">제목+내용</option>
-                        <option value="2">제목</option>
-                        <option value="3">내용</option>
-                    </select>
-                </div>
-                <div class="col-md-8 col-6">
-                    <input class="form-control" id="keyword"></input>
-                </div>
-                <div class="col-md-2 col-2">
-                    <button class="btn btn-secondary" id="btn_search" style="width: 100%">search</button>
-                </div>
-            </div> -->
             <!-- 글 목록 -->
             <div class="row justify-content-center">
                 <div class="col-12 list">
@@ -60,15 +45,12 @@ write_table();
                             <th style="width:20%" id="date"><label>날짜</label></th>
                         </thead>
                     </table>
-                    <?php //write_list(); 
-                    ?>
+                    <!-- <?php //write_list(); ?> -->
                 </div>
                 <!--<div class="col-8" id="index">
-                    <?php //write_index(); 
-                    ?>-->
+                    <?php //write_index(); ?>
+                </div>-->
             </div>
-        </div>
-        </div>
         </div>
     </main>
     <footer></footer>
@@ -76,22 +58,16 @@ write_table();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="../js/index.js"></script>
-    <script id="dsq-count-scr" src="//hotcat-1.disqus.com/count.js" async></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+    <script type="text/javascript" src="/assets/js/notification.js" async=""></script>
+    <script src="https://kit.fontawesome.com/8426c7d90d.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             document.title = "Devsign-board";
 
             var list = $('#header-menu').children();
             $(list[0]).addClass('active');
-            $('#tb').on('draw.dt', function() {
-                console.log('sdfsd');
-                // $.getScript("http://hotcat-1.disqus.com/count.js");
-                // $.getScript("http://hotcat-1.disqus.com/count.js");
-                    // DISQUSWIDGETS.getCount({
-                    //     reset: true
-                    // });
-            });
+            $('#tb').on('draw.dt', function() {});
         });
     </script>
 </body>

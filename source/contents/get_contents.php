@@ -1,5 +1,6 @@
 <?php
-require_once("../db.class.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db.class.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(isset($_GET["board_id"])){
     DB::connect();
     $result = array();
-    $rows = DB::query2("SELECT user_id, user_name, subject, contents, hits, reg_date FROM board WHERE board_id = :id", array(":id" => $_GET["board_id"]));
+    $rows = DB::query2("SELECT * FROM board WHERE board_id = :id", array(":id" => $_GET["board_id"]));
     $result["board"] = $rows;
 
     // 유효하지 않은 board_id일 때

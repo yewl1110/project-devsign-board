@@ -1,7 +1,7 @@
-<?php
-require_once("db.class.php");
-require_once("auth_class.php");
-require_once("errors.php");
+<?php<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/errors.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/auth.class.php';
 
 
 if(isset($_POST["id"])){

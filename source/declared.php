@@ -1,49 +1,52 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/session_handler.php';
 
-function getRootURL(){
+function getRootURL()
+{
     $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
     //return 'http://hotcat.ddns.net:40080/pi/project-devsign-board/source';
     return $root;
 }
 
-function write_header_manu(){
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    
+function getChatURL(){
+    return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://hotcat-chatting.ddns.net:43000/';
+}
+
+function write_header_manu()
+{
     $home = getRootURL();
-    if(isset($_SESSION["id"])){
-        $id = $_SESSION["id"];
-        /*echo '<a href="'.$home.'/member_info.php">마이페이지</a> <a href="'.$home.'/logout.php">로그아웃</a><br>
-        <label>'.$id.' 님 환영합니다</label>';*/ 
-        echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'member/member_info.php">마이페이지</a>
+    if (isset($_SESSION["id"])) {
+        echo '
+        <li class="nav-item">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="far fa-bell"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="notification">
+                    <div class="noti-title">Notifications <a href="#">All clear</a></div>
+                    <div class="noti-contents">
+                    </div>
+                </div>
+            </div>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="'.$home.'auth/logout.php">로그아웃</a>
+            <a class="nav-link" href="' . $home . 'member/member_info.php">마이페이지</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="' . $home . 'auth/logout.php">로그아웃</a>
         </li>';
-    }else{
-        //echo '<a href="'.$home.'/login.php">로그인</a>';
+    } else {
         echo '<li class="nav-item">
-        <a class="nav-link" href="'.$home.'auth/login.php">로그인</a>
+            <a class="nav-link" href="' . $home . 'auth/login.php">로그인</a>
         </li>';
     }
 }
 
-function write_header(){
+function write_header()
+{
     $home = getRootURL();
-    /*echo '<div id="header_wrap" role="heading">
-    <div class="header_group">
-    <a href="'.$home.'">
-    <img src="resource/devsign.jpg" width="280"></a>
-    <span id="header_menu">
-    <a href="'.$home.'">home</a> '; 
-    write_header_manu();
-    echo '</span>
-    </div>
-    </div>';*/
     echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand mb-0 h1" href="'.$home.'">Devsign-board</a>
+    <a class="navbar-brand mb-0 h1" href="' . $home . '">Devsign-board</a>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
     data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
     aria-label="Toggle navigation">
@@ -51,10 +54,10 @@ function write_header(){
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto" id="header-menu">
     <li class="nav-item">
-    <a class="nav-link" href="'.$home.'index.php">Home<span class="sr-only">(current)</span></a>
+    <a class="nav-link" href="' . $home . 'index.php">Home<span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="'.$home.'index.php">Chatting<span class="sr-only">(current)</span></a>
+    <a class="nav-link" href="' . $home . 'chat.php">Chatting<span class="sr-only">(current)</span></a>
     </li>
     </ul>
     <ul class="navbar-nav" id="login-menu">';
@@ -62,7 +65,8 @@ function write_header(){
     echo '</ul></div></nav>';
 }
 
-function write_sidebar_button(){
+function write_sidebar_button()
+{
     echo '
     <nav class="navbar d-lg-none navbar-light bg-transparent" id="sidebar_button">
         <button class="navbar-toggler d-lg-none collapsed" type="button"
@@ -73,15 +77,16 @@ function write_sidebar_button(){
     ';
 }
 
-function write_sidebar(){
+function write_sidebar()
+{
     echo '
     <nav class="col-lg-2 d-lg-block sidebar collapse" id="side">
         <ul class="nav flex-column" id="side-menu">
             <li class="nav-item">
-                <a class="nav-link" href="member_info.php">정보변경</a>
+                <a class="nav-link" href="' . getRootURL() . 'member/member_info.php">정보변경</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="leave.php">회원탈퇴</a>
+                <a class="nav-link" href="' . getRootURL() . 'member/leave.php">회원탈퇴</a>
             </li>
         </ul>
     </nav>

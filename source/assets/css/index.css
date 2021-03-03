@@ -7,6 +7,11 @@
     text-align: center;
 }
 
+.comment-count {
+    color: darkgray;
+    font-size: 0.95rem;
+}
+
 table.dataTable.display tbody tr:hover,
 table.dataTable.hover tbody tr:hover {
     background-color: #f6f6f6;

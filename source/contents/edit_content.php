@@ -19,8 +19,9 @@ if (!isset($_SESSION["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
-    <link href="../style/writing.css" rel="stylesheet" type="text/css">
-    <link href="../style/theme.css" rel="stylesheet" type="text/css">
+    <base href="..">
+    <link href="assets/css/writing.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/theme.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -30,7 +31,7 @@ if (!isset($_SESSION["id"])) {
     <main>
         <div class="container-xl view">
             <div class="form-wrapper">
-                <form action="insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
+                <form action="contents/insert_contents.php" method="post" enctype="multipart/form-data" id="submitForm">
                     <input id="board_id" name="board_id"/>
                     <!--에디터 부분-->
                     <div class="form-row">
@@ -119,8 +120,8 @@ if (!isset($_SESSION["id"])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/vu4diyhkeaq9ze6x24n1gder340bczkpzcz51zl1mprozijj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script type="text/javascript" src="../js/writing.js"></script>
-    <script type="text/javascript" src="../js/edit.js"></script>
+    <script type="text/javascript" src="assets/js/writing.js"></script>
+    <script type="text/javascript" src="assets/js/edit.js"></script>
     <script type="text/javascript">
         var list = $('#header-menu').children();
         $(list[0]).addClass('active');

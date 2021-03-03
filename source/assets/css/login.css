@@ -24,3 +24,21 @@ a {
 #login .form-group {
     margin: 20px 0;
 }
+
+.form-title label {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.form-sub-title {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#find-form .form-group {
+    text-align: right;
+}
+
+#find-form {
+    width: 350px;
+}

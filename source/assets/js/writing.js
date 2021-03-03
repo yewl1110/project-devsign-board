@@ -5,10 +5,7 @@ $(document).ready(function(){
         height: 500,
         menubar: false,
         toolbar_mode: 'wrap',
-        toolbar: 'undo redo | formatselect | ' +
-            'bold italic backcolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         setup: function(editor) {
             editor.on('change', function() {
@@ -45,10 +42,6 @@ $(document).ready(function(){
     });
 
     // div 누르면 파일 탐색 창 열리게
-    // $('#file_attach_sm file_upload').click(function(e){
-    //     e.preventDefault();
-    //     $('#files_sm').click();
-    // });
     $('#btn_submit').click(submitContents);
 
     $("#drop-area")
@@ -90,9 +83,10 @@ function submitContents(){
     }
 
     $.ajax({
-        url:"../contents/insert_contents.php",
+        url:`${window.location.origin}/contents/insert_contents.php`,
         data:formData,
         type:'POST',
+        enctype: 'multipart/form-data',
         processData:false,
         contentType:false,
         cache:false,
@@ -142,7 +136,9 @@ function file_count(files){
     for(var i = 0; i < files.length; i++){
         if(check(files[i])){
             fileList.push(files[i]);
-        }        
+        } else {
+            count--;
+        }
     }
     $("#file_info > table").empty();
     
@@ -177,7 +173,7 @@ function check(file){
 
 // 첨부된 파일 갯수 표시
 function drawUploaded(count){
-    $("#message").html("<label>" + count + " files Uploaded.</label>").css("display", "block");
+    $("#message").html(`<label>${count} files Uploaded.</label>`).css("display", "block");
     $("#upload_cancel").css("display", "block");
 }
 
@@ -192,7 +188,7 @@ function drawFile(files){
     $("#file_info").css("display", "block");
     var index = 0;
     files.forEach(file => {
-        var file_record = '<tr><td style="display:none;"><label>' + index + '</label></td><td style="width: 90%;"><label>' + file.name + '</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeRow(this)"></td></tr>';
+        var file_record = `<tr><td style="display:none;"><label>${index}</label></td><td style="width: 90%;"><label>${file.name}</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeRow(this)"></td></tr>`;
         $("#file_info > table").append(file_record);
         index++;
     });
@@ -264,7 +260,7 @@ function drawUploadedFile(files){
     var keys = Object.keys(files);
             
     keys.forEach(key =>{
-        var file_record = '<tr><td style="display:none;"><label>' +  '-1' + '</label></td><td style="display:none;"><label>' + key + '</label></td><td style="width: 90%;"><label>' + uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>';
+        var file_record = `<tr><td style="display:none;"><label>-1</label></td><td style="display:none;"><label>${key}</label></td><td style="width: 90%;"><label>${uploadedFiles[key]}</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>`;
         $("#file_info > table").append(file_record);
     });
 }

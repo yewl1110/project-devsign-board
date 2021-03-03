@@ -1,7 +1,7 @@
 <?php
-require_once("../declared.php");
-require_once("../db.class.php");
-require_once("../auth.class.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/declared.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/db.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/auth.class.php";
 
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -23,8 +23,9 @@ if (isset($_SESSION["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css" integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../style/post.css">
-    <link rel="stylesheet" href="../style/theme.css">
+    <base href="..">
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
 </head>
 
 <body>
@@ -56,16 +57,36 @@ if (isset($_SESSION["id"])) {
                         <div class="other col-12"></div> -->
                     </div>
                 </div>
-                    <div class="col-12" id="disqus_thread"></div>
+                <!-- <div class="col-12" id="disqus_thread"></div> -->
+                <div class="comment-wrapper">
+                    <div class="col-12">
+                        <h4>댓글</h4>
+                    </div>
+                    <form id="submit-form" onsubmit="return false;" style="width: 100%">
+                        <div class="input-group col-12" id="comment-form">
+                            <input style="display:none;" id="board_id" name="board_id" />
+                            <textarea class="form-control" style="resize: none;" aria-label="With textarea" name="contents"></textarea>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary"  type="submit">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-12" id="comments"></div>
+                    <div class="col-12">
+                        <button class="btn btn-outline-secondary btn-block" id="comment-btn" type="submit">Load More</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
     <footer></footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/view.js"></script>
+    <script src="https://kit.fontawesome.com/8426c7d90d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/assets/js/view.js"></script>
+    <script type="text/javascript" src="/assets/js/notification.js" async=""></script>
     <script type="text/javascript">
-        $(document).ready(function() {    
+        $(document).ready(function() {
             var list = $('#header-menu').children();
             $(list[0]).addClass('active');
             var params = new URLSearchParams(window.location.search);
@@ -75,22 +96,15 @@ if (isset($_SESSION["id"])) {
                 $("#edit").remove();
             }
             document.title = $('#subject').html();
-            var disqus_shortname = $('#subject').html();
-            var disqus_config = function() {
-                this.page.url = window.location.href;
-                this.page.identifier = params.get("board_id");
-                this.page.title = disqus_shortname;
-            };
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document,
-                    s = d.createElement('script');
-                s.src = 'https://hotcat-1.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
+            $('#board_id').val(params.get("board_id"));
+
+            $('textarea').on('change input', function () {
+                this.style.height = "";
+                this.style.height = this.scrollHeight + "px";
+            });
+            $('textarea').change();
         });
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </body>
 
 </html>

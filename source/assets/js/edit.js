@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     // board_id로 게시글 내용 로드
     $.ajax({
-        url: "../contents/get_contents.php?board_id=" + params.get("board_id"),
+        url: `${window.location.origin}/contents/get_contents.php?board_id=${params.get("board_id")}`,
         type: "get",
         dataType: "json",
         async: false,
@@ -25,10 +25,7 @@ $(document).ready(function () {
                 $('#file_info').css("display", "block");
                 drawUploaded(keys.length);
                 keys.forEach(key => {
-                    var file_record = '<tr><td style="display:none;"><label>-1</label></td><td style="display:none;">' +
-                            '<label>' + key + '</label></td><td style="width: 90%;"><label>' +
-                            uploadedFiles[key] + '</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)' +
-                            '"></td></tr>';
+                    var file_record = `<tr><td style="display:none;"><label>-1</label></td><td style="display:none;"><label>${key}</label></td><td style="width: 90%;"><label>${uploadedFiles[key]}</label></td><td style="width: 10%;"><input class="btn btn-outline-secondary btn-sm" type="button" value="삭제" onclick="removeUploadedFile(this)"></td></tr>`;
                     $("#file_info > table").append(file_record);
                 });
             }
@@ -66,7 +63,7 @@ function updateContents() {
     }
 
     $.ajax({
-        url: "../contents/update_contents.php",
+        url: `${window.location.origin}/contents/update_contents.php`,
         data: formData,
         type: 'POST',
         processData: false,
@@ -82,10 +79,9 @@ function updateContents() {
 };
 
 function writeAttachFile(row) {
-    var url = "http://hotcat.ddns.net:40080/pi/project-devsign-board/source/download.php?down" +
-            "load=" + row['file_name_save'];
-    return '<span><a href="' + url + '">' + row['file_name_origin'] +
-            '</a></span>';
+    var url = `${window.location.origin}/source/download.php?download=${row['file_name_save']};`;
+    console.log(url);
+    return `<span><a href="${url}">${row['file_name_origin']}</a></span>`;
 }
 
 var htmlspecialchars_decode = function (string) {
@@ -122,6 +118,7 @@ htmlspecialchars_decode.specialchars = [
         '&', '&amp;'
     ]
 ];
+
 /*
 // 파일 리스트 개별 삭제
 function removeFile(row){

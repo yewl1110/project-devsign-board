@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css"
+        integrity="sha512-QTQigm89ZvHzwoJ/NgJPghQPegLIwnXuOXWEdAjjOvpE9uaBGeI05+auj0RjYVr86gtMaBJRKi8hWZVsrVe/Ug=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/style/theme.css" type="text/css">
+    <style type="text/css">
+        main {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #room-list {
+            max-width: 600px;
+            width: 600px;
+            margin: auto;
+        }
+
+        #room-list p {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="list-group" id="room-list">
+            <a href="/client/1" class="list-group-item list-group-item-action">
+                <div>
+                    <h4>Room-1</h4>
+                    <div>
+                        <p class="user-count">?</p> / <p>50</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/client/2" class="list-group-item list-group-item-action">
+                <div>
+                    <h4>Room-2</h4>
+                    <div>
+                        <p class="user-count">?</p> / <p>50</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/client/3" class="list-group-item list-group-item-action">
+                <div>
+                    <h4>Room-3</h4>
+                    <div>
+                        <p class="user-count">?</p> / <p>50</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/client/4" class="list-group-item list-group-item-action">
+                <div>
+                    <h4>Room-4</h4>
+                    <div>
+                        <p class="user-count">?</p> / <p>50</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/client/5" class="list-group-item list-group-item-action">
+                <div>
+                    <h4>Room-5</h4>
+                    <div>
+                        <p class="user-count">?</p> / <p>50</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
+        integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
+        crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="assets/js/socket_list.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var home = "http://hotcat.ddns.net:40080/pi/project-devsign-board/source";
     $("#message_passwd").css("display", "none");
     var password_check = false;
 
@@ -36,7 +35,7 @@ $(document).ready(function(){
             $.ajax({
                 type: "POST",
                 data: d,
-                url:home+"/update_member.php",
+                url:`${window.location.origin}/member/update_member.php`,
                 success: function(result){
                     if(result == "-1"){ // 실패
                         alert("비밀번호가 틀립니다.");
@@ -47,7 +46,7 @@ $(document).ready(function(){
                         return false;
                     }
                     else{
-                        window.location.replace(home + "/index.php?message=ACCOUNT_CHANGE_SUCCESS");
+                        window.location.replace(window.location.origin + "/index.php?message=ACCOUNT_CHANGE_SUCCESS");
                     }
                 }
             });

@@ -1,11 +1,7 @@
 <?php
+require_once('../auth.class.php');
 require_once('../declared.php');
 require_once('../db.class.php');
-require_once('../auth.class.php');
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 //이미 로그인 되어있을 경우
 if(isset($_SESSION["id"])){
@@ -40,5 +36,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     header("Location:".getRootURL());
+    exit;
 }
 ?>

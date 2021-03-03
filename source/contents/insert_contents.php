@@ -1,7 +1,7 @@
 <?php 
-require_once('../errors.php');
-require_once('../db.class.php');
-require_once('../declared.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/errors.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/declared.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -32,6 +32,8 @@ try{
 */
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["subject"]) && isset($_SESSION["id"])){
+        
+        ErrorManager::write_log(json_encode($_POST));
         $id = null;
         
         $query = "INSERT INTO board (user_id, user_name, subject, contents, reg_date, hits) 
@@ -45,9 +47,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         );
         DB::query2($query, $params);
         $id = DB::lastInsertId();
+        ErrorManager::write_log(json_encode($_FILES));
         
         // 파일 첨부했는지 확인
         if(is_uploaded_file($_FILES["files"]["tmp_name"][0])){
+            ErrorManager::write_log(implode($_FILES));
             $allowDataType = array(
                 'jpg', 'png', 'jpeg', 'txt'
             );
@@ -111,5 +115,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 }
-header("Location:".getRootURL());
+// header("Location:".getRootURL());
 ?>

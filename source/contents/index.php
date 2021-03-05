@@ -59,7 +59,7 @@ write_table();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="/assets/js/index.js"></script>
-    <script type="text/javascript" src="/assets/js/notification.js" async=""></script>
+    <script type="text/javascript" src="/assets/js/notification.js" defer></script>
     <script src="https://kit.fontawesome.com/8426c7d90d.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(document).ready(function() {

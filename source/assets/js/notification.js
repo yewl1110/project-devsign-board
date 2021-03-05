@@ -1,6 +1,6 @@
 let index = 0;
 
-if($('#notification').length > 0) {
+if($('#notification').length > 0 && $('#m-notification').length > 0) {
 
     $('.noti-contents').on('scroll', function() {
         let scrollTop = $('.noti-contents').scrollTop();
@@ -29,6 +29,23 @@ if($('#notification').length > 0) {
     getNotification();
     
     let alarm = setInterval(getNewNotification, 10000);
+
+    $(window).on('resize', function() {
+        if($(window).outerWidth() >= 992) {
+        // if(window.innerWidth >= 992) {
+            $('#m-notification').closest('.nav-item').css('display', 'none');
+            $('#notification').closest('.nav-item').css('display', 'initial');
+            $('#m-notification').closest('.navbar').css('width', '0px');
+        } else {
+            let width = $('nav').width() - ($('.navbar-brand').width() + $('.navbar-toggler').outerWidth() + 50);
+            width += 'px';
+            $('#m-notification').closest('.nav-item').css('display', 'initial');
+            $('#notification').closest('.nav-item').css('display', 'none');
+            $('#m-notification').closest('.navbar').css('width', width);
+        }
+    });
+
+    $(window).trigger('resize');
 }
     
 function getNotification() {
@@ -79,7 +96,8 @@ function clearNotification(id) {
         url: `${window.location.origin}/delete_notification.php?id=${id}`,
         method: 'GET',
         success: function(data) {
-            $(`p#${id}`).closest('button.dropdown-item').remove();
+            $(`#notification p#${id}`).closest('button.dropdown-item').remove();
+            $(`#m-notification p#${id}`).closest('button.dropdown-item').remove();
         }
     });
 }

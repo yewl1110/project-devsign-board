@@ -17,15 +17,14 @@ function write_header_manu()
     $home = getRootURL();
     if (isset($_SESSION["id"])) {
         echo '
-        <li class="nav-item">
+        <li class="nav-item" id="">
             <div class="dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="far fa-bell"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="notification">
                     <div class="noti-title">Notifications <a href="#">All clear</a></div>
-                    <div class="noti-contents">
-                    </div>
+                    <div class="noti-contents"></div>
                 </div>
             </div>
         </li>
@@ -42,11 +41,34 @@ function write_header_manu()
     }
 }
 
+function write_notification() {
+    if(isset($_SESSION['id'])) {
+        return '
+        <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="m-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-bell"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="m-notification">
+                <div class="noti-title">Notifications <a href="#">All clear</a></div>
+                <div class="noti-contents"></div>
+            </div>
+        </div>';
+    } else {
+        return '';
+    }
+}
+
 function write_header()
 {
     $home = getRootURL();
-    echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    echo '
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" href="' . $home . '">Devsign-board</a>
+    <div class="navbar" style="padding:0;">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">' . write_notification() . '</li>
+        </ul>
+    </div>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
     data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
     aria-label="Toggle navigation">

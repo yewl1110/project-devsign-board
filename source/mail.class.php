@@ -10,7 +10,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/errors.php';
 
 class Mail{
     private static $username = "yewl1110@naver.com";
-    private static $password = "syj2468916na";
+    private static $password = "**********";
     private static $host = "smtp.naver.com";
     private static $port = 465;
     private static $smtpSecure = "ssl";

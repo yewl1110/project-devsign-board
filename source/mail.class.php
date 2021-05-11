@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/declared.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/errors.php';
 
 class Mail{
-    private static $username = "yewl1110@naver.com";
+    private static $username = "****************";
     private static $password = "**********";
     private static $host = "smtp.naver.com";
     private static $port = 465;

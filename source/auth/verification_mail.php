@@ -32,7 +32,7 @@ if (isset($_GET["email"]) && isset($_GET["email_key"])) {
     if ($result[0]['id'] != '') {
         // 유효한 키면 키 제거
         DB::query2(
-            "UPDATE member SET email_key = '', activated = 1 WHERE email = :email AND email_key = :email_key",
+            "UPDATE member SET email_key = '' WHERE email = :email AND email_key = :email_key",
             array(
                 ":email" => $email,
                 ":email_key" => $_GET["email_key"]

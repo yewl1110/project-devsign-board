@@ -62,7 +62,7 @@ if (Auth::isLogin()) {
             async: false,
             success: function(result) {
                 if (!alert('재전송완료')) {
-                    window.location="/auth/login.php";
+                    history.back();
                 }
             }
         });

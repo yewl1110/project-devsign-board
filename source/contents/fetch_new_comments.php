@@ -6,13 +6,13 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_GET["board_id"]) && isset($_GET["index"]) && $_GET["index"] != 'undefined'){
+if(isset($_GET["board_id"]) && isset($_GET["index"])){
     DB::connect();
     $result = array();
     
-    $index = (isset($_GET["index"]) && ($_GET["index"] != '0')) ? ' AND comment_id > ' . $_GET["index"] . ' AND user_id <> "' . $_SESSION['id'] . '" ' : '';
+    $index = (isset($_GET["index"]) && ($_GET["index"] != '0')) ? ' AND comment_id > ' . $_GET["index"] . 'AND user_id <> "' . $_SESSION['id'] . '" ' : '';
 
-    $rows = DB::query2('SELECT comment_id, user_id, contents, reg_date FROM comment WHERE board_id = :id ' . $index . ' order by reg_date', 
+    $rows = DB::query2('SELECT comment_id, user_id, contents, reg_date FROM comment WHERE board_id = :id' . $index . ' order by reg_date', 
     array(
         ":id" => $_GET["board_id"]));
     

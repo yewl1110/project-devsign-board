@@ -101,6 +101,18 @@
 - drag & drop을 통해 파일을 업로드 할 수 있습니다.
 <br>
 
+&emsp;<details>
+&emsp;<summary>스크린샷</summary>
+&emsp;<div markdown="1">
+
+&emsp;<img src="./img/4-1.png" title=""></img>
+&emsp;<img src="./img/4-2.png" title=""></img>
+
+</div>
+</details>
+
+<br>
+
 <details>
 <summary>게시글 및 파일 업로드 코드</summary>
 <div markdown="1">
@@ -333,6 +345,14 @@ if (isset($_POST["board_id"])) {
 - 댓글 더보기나 댓글 수정 및 삭제를 구현했습니다.
 - 글을 보고 있을 경우 새로 추가되는 댓글을 볼 수 있습니다.
 
+&emsp;<details>
+&emsp;<summary>스크린샷</summary>
+&emsp;<div markdown="1">
+
+&emsp;<img src="./img/5-1.png" title=""></img>
+
+</div>
+</details>
 
 <br>
 

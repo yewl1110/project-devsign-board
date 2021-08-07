@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $fileName = $rows["0"]["file_name_origin"];
         $fileLocalName = $rows["0"]["file_name_save"];
 
-        $filePath = "../../../files/".$fileLocalName;
+        $filePath = "../../files/".$fileLocalName;
         $fileSize = filesize($filePath);
         $path_parts = pathinfo($filePath);
         //$fileName = $path_parts['basename'];

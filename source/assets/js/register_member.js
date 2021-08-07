@@ -1,5 +1,4 @@
-$(document).ready(function(){
-    var home = "http://hotcat.ddns.net:40080/";
+$(document).ready(function(){\
     var id_check = false;
     var password_check = false;
     var email_check = false;
@@ -126,7 +125,7 @@ $(document).ready(function(){
     });
 
     $("#cancel").click(function(){
-        window.location.href = home;
+        window.location.href = "/";
     });
 
     function check(str, val){

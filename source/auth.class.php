@@ -156,7 +156,7 @@ class Auth
             )
         );
 
-        if ($row[0]["email"] == $email && $row[0]['email_key'] != '') {
+        if ($row[0]["email"] == $email) {
             DB::query2(
                 "UPDATE member SET email_key = :email_key WHERE email = :email",
                 array(

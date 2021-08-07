@@ -31,7 +31,7 @@ if (!isset($_SESSION["id"])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="assets/js/index.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
     <script type="text/javascript" src="/assets/js/notification.js" async=""></script>
     <script type="text/javascript">
         $(document).ready(function() {

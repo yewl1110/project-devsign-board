@@ -9,7 +9,7 @@ function getRootURL()
 }
 
 function getChatURL(){
-    return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://hotcat-chatting.ddns.net:43000/';
+    return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://hotcat.ddns.net:10002/';
 }
 
 function write_header_manu()

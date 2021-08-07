@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["id"])) {
         DB::connect();
         DB::query2(
-            "INSERT INTO member VALUES (:id, :passwd, :email, :name, :nickname, :email_key)",
+            "INSERT INTO member VALUES (:id, :passwd, :email, :name, :nickname, :email_key, 0)",
             array(
                 ":id" => $_POST["id"],
                 ":passwd" => password_hash($_POST["passwd"], PASSWORD_DEFAULT),

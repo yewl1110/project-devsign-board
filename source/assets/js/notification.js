@@ -57,7 +57,7 @@ function getNotification() {
                 index++;
                 let data = JSON.parse(result);
                 if(data.length > 0) {
-                    $.each(data, function(index, item) {
+                    $.each(data, function(i, item) {
                         $('.noti-contents').append(createNotiRow(item));
                     });
                 } else {
@@ -82,7 +82,7 @@ function getNewNotification() {
             if(result != '0') {
                 let data = JSON.parse(result);
                 if(data.length > 0) {
-                    $.each(data, function(index, item) {
+                    $.each(data, function(i, item) {
                         $('.noti-contents').prepend(createNotiRow(item));
                     });
                 }

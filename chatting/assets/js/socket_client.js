@@ -1,6 +1,6 @@
 // server.js와 통신
 // socket client
-var socket = io(`http://hotcat-chatting.ddns.net:43000?room_name=${room_name}`); //1
+var socket = io(`http://hotcat.ddns.net:10002?room_name=${room_name}`); //1
 // var socket = io();
 
 $('#chat').on('submit', function (e) { //2

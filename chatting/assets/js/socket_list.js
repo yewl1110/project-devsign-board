@@ -1,4 +1,4 @@
-var socket = io(`http://hotcat-chatting.ddns.net:43000?room_name=room_list`);
+var socket = io(`http://hotcat.ddns.net:10002?room_name=room_list`);
 
 socket.on('join', function(msg) {
     var users = JSON.parse(msg);

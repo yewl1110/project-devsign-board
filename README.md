@@ -26,7 +26,7 @@
 
 ## 서버 구조
 
-<img src="./img/1.jpg" title=""></img>
+<img src="./img/1-1.jpg" title=""></img>
 
 <br>
 
@@ -341,6 +341,15 @@ if (isset($_POST["board_id"])) {
 - node.js의 express 프레임워크와 soekct.io를 이용하여 소켓 통신을 구현했습니다.
 - 실시간 채팅은 로그인 상태에서만 가능합니다. 로그인 상태를 확인하기 위해 php 세션을 공유할 수 있게 구현했습니다.
 
+&emsp;<details>
+&emsp;<summary>스크린샷</summary>
+&emsp;<div markdown="1">
+
+&emsp;<img src="./img/6-2.png" title=""></img>
+&emsp;<img src="./img/6-1.png" title=""></img>
+
+</div>
+</details>
 
 <br>
 

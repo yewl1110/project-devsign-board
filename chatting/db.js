@@ -2,8 +2,8 @@ var mysql = require('mysql');
 module.exports = {
     conf: {
         host: 'localhost',
-        user: 'pi',
-        password: '980809',
+        user: '',
+        password: '',
         database: 'session'
     },
     run: async function (sessid) {

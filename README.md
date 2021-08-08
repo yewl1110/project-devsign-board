@@ -67,8 +67,8 @@
 &emsp;<div markdown="1">
 
 &emsp;<img src="./img/2-2-1.png" title=""></img>
-&emsp;<img src="./img/2-2-2.png" title=""></img>
-&emsp;<img src="./img/2-2-3.png" title=""></img>
+&emsp;<img src="./img/2-2-2.PNG" title=""></img>
+&emsp;<img src="./img/2-2-3.PNG" title=""></img>
 
 </div>
 </details>
@@ -87,7 +87,7 @@
 &emsp;<summary>스크린샷</summary>
 &emsp;<div markdown="1">
 
-&emsp;<img src="./img/2-3-1.png" title=""></img>
+&emsp;<img src="./img/2-3-1.PNG" title=""></img>
 
 </div>
 </details>
@@ -105,8 +105,8 @@
 &emsp;<summary>스크린샷</summary>
 &emsp;<div markdown="1">
 
-&emsp;<img src="./img/4-1.png" title=""></img>
-&emsp;<img src="./img/4-2.png" title=""></img>
+&emsp;<img src="./img/4-1.PNG" title=""></img>
+&emsp;<img src="./img/4-2.PNG" title=""></img>
 
 </div>
 </details>
@@ -349,7 +349,7 @@ if (isset($_POST["board_id"])) {
 &emsp;<summary>스크린샷</summary>
 &emsp;<div markdown="1">
 
-&emsp;<img src="./img/5-1.png" title=""></img>
+&emsp;<img src="./img/5-1.PNG" title=""></img>
 
 </div>
 </details>
@@ -366,8 +366,8 @@ if (isset($_POST["board_id"])) {
 &emsp;<summary>스크린샷</summary>
 &emsp;<div markdown="1">
 
-&emsp;<img src="./img/6-2.png" title=""></img>
-&emsp;<img src="./img/6-1.png" title=""></img>
+&emsp;<img src="./img/6-2.PNG" title=""></img>
+&emsp;<img src="./img/6-1.PNG" title=""></img>
 
 </div>
 </details>
